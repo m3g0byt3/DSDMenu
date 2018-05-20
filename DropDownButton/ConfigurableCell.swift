@@ -9,8 +9,8 @@
 import Foundation
 
 protocol ConfigurableCell {
-
+    
     associatedtype Model
-
+    
     func configureUsing(_ model: Model)
 }

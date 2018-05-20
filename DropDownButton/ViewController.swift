@@ -9,13 +9,13 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     // MARK: - IBOutlets
-
+    
     @IBOutlet private weak var dropDown: DropDownMenu!
-
+    
     // MARK: - Properties
-
+    
     private let model = [
         Fruit(name: "Apple", image: #imageLiteral(resourceName: "apple")),
         Fruit(name: "Pineapple", image: #imageLiteral(resourceName: "pineapple")),

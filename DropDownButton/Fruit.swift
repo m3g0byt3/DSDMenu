@@ -9,7 +9,7 @@
 import UIKit
 
 struct Fruit {
-
+    
     let name: String
     let image: UIImage
 }

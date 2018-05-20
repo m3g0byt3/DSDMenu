@@ -9,9 +9,9 @@
 import UIKit
 
 open class DropDownMenu: UIButton {
-
+    
     // MARK: - Constants
-
+    
     private static let heightToCornerRadiusRatio: CGFloat = 1 / 25
     private static let shadowOffset = CGSize(width: 1.0, height: 1.0)
     private static let shadowOpacity: Float = 1 / 3
@@ -20,11 +20,11 @@ open class DropDownMenu: UIButton {
     private static let animationDuration: TimeInterval = 0.3
     private static let heightConstraintMultiplier: CGFloat = 1.0
     private static let cellIdentifier = "cell"
-
+    
     // MARK: IBOutlets
-
+    
     @IBOutlet public weak var delegate: DropDownDelegate?
-
+    
     // MARK: - Properties
 
     public var selectedItemIndex = 0 {
@@ -32,15 +32,17 @@ open class DropDownMenu: UIButton {
             updateView()
         }
     }
+    
     private let collapsedHeight: CGFloat = 0
+    
     private var expandedHeight: CGFloat {
         let rows = delegate?.numberOfItems(in: self) ?? 0
         return bounds.height * CGFloat(rows)
 
     }
-
+    
     private weak var heightConstraint: NSLayoutConstraint!
-
+    
     private lazy var containerView: UIView = { this in
         this.layer.masksToBounds = false
         this.layer.shadowColor = DropDownMenu.shadowColor.cgColor
@@ -49,43 +51,43 @@ open class DropDownMenu: UIButton {
         this.layer.shadowRadius = DropDownMenu.shadowRadius
         return this
     }(UIView())
-
+    
     private lazy var tableView: UITableView = { this in
         this.dataSource = self
         this.delegate = self
         this.register(UITableViewCell.self, forCellReuseIdentifier: DropDownMenu.cellIdentifier)
         return this
     }(UITableView())
-
+    
     // MARK: - Inits
-
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
-
+    
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-
+    
     // MARK: - Public API
-
+    
     // See https://developer.apple.com/library/content/qa/qa2013/qa1812.html for details.
     override open func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         // Convert the point to the target view's coordinate system.
         // The target view isn't necessarily the immediate subview
         let convertedPoint = self.convert(point, to: tableView)
-
+        
         if tableView.bounds.contains(convertedPoint) {
             // The target view may have its view hierarchy,
             // so call its hitTest method to return the right hit-test view
             return tableView.hitTest(convertedPoint, with: event)
         }
-
+        
         return super.hitTest(point, with: event)
     }
-
+    
     override open func layoutSubviews() {
         super.layoutSubviews()
         // Set `separatorStyle = .none` at every subviews layout due to bug https://openradar.appspot.com/21940268
@@ -96,9 +98,9 @@ open class DropDownMenu: UIButton {
         containerView.layer.cornerRadius = containerView.bounds.width * DropDownMenu.heightToCornerRadiusRatio
         tableView.layer.cornerRadius = tableView.bounds.width * DropDownMenu.heightToCornerRadiusRatio
     }
-
+    
     // MARK: - Private API
-
+    
     private func setup() {
         addTarget(self, action: #selector(selectionHandler), for: .touchUpInside)
         containerView.addSubview(tableView)
@@ -144,10 +146,10 @@ open class DropDownMenu: UIButton {
             heightConstraint
         ])
     }
-
+    
     @objc private func selectionHandler() {
         let isExpanded = self.heightConstraint.constant > self.collapsedHeight
-
+        
         layoutIfNeeded()
         UIView.animate(withDuration: DropDownMenu.animationDuration) { [unowned self] in
             self.heightConstraint.constant = isExpanded ? self.collapsedHeight : self.expandedHeight
@@ -183,7 +185,7 @@ extension DropDownMenu: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return delegate?.numberOfItems(in: self) ?? 0
     }
-
+    
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // TODO: Configure cell with closure from delegate!
         let cell = tableView.dequeueReusableCell(withIdentifier: DropDownMenu.cellIdentifier, for: indexPath)
@@ -198,7 +200,7 @@ extension DropDownMenu: UITableViewDataSource {
 // MARK: - UITableViewDelegate protocol conformance
 
 extension DropDownMenu: UITableViewDelegate {
-
+    
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         selectionHandler()
