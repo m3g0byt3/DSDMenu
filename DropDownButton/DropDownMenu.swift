@@ -26,19 +26,12 @@ open class DropDownMenu: UIButton {
     @IBOutlet public weak var delegate: DropDownDelegate?
     
     // MARK: - Properties
-
-    public var selectedItemIndex = 0 {
-        didSet {
-            updateView()
-        }
-    }
     
     private let collapsedHeight: CGFloat = 0
     
     private var expandedHeight: CGFloat {
         let rows = delegate?.numberOfItems(in: self) ?? 0
         return bounds.height * CGFloat(rows)
-
     }
     
     private weak var heightConstraint: NSLayoutConstraint!
@@ -107,23 +100,7 @@ open class DropDownMenu: UIButton {
         addSubview(containerView)
         setupConstraints()
     }
-
-    // FIXME: remove this!
-    private func test() {
-        layoutIfNeeded()
-        let cell = UITableViewCell(frame: frame)
-        cell.textLabel?.text = "#\(selectedItemIndex)"
-//        cell.imageView?.image = DropDownMenu.images[selectedItemIndex]
-        let snapshot = cell.snapshotImage()
-        setImage(snapshot?.withRenderingMode(.alwaysOriginal), for: .normal)
-
-        // FIXME: remove this!
-        let title = titleLabel?.text?.appending(" ▼")
-        titleLabel?.text = title
-        setTitle(title, for: .normal)
-        //        updateTitle()
-    }
-
+    
     private func setupConstraints() {
         translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -154,27 +131,7 @@ open class DropDownMenu: UIButton {
         UIView.animate(withDuration: DropDownMenu.animationDuration) { [unowned self] in
             self.heightConstraint.constant = isExpanded ? self.collapsedHeight : self.expandedHeight
             self.layoutIfNeeded()
-            self.updateTitle()
         }
-    }
-
-    private func updateView() {
-        let index = IndexPath(row: selectedItemIndex, section: 0)
-        let cell = tableView.cellForRow(at: index)
-        if let snapshot = cell?.snapshotImage(), snapshot.size.width > 0, snapshot.size.height > 0 {
-            setImage(snapshot.withRenderingMode(.alwaysOriginal), for: .normal)
-        }
-    }
-
-    private func updateTitle() {
-        // FIXME: remove this!
-        let isExpanded = self.heightConstraint.constant > self.collapsedHeight
-
-        let suffix = isExpanded ? "▲" : "▼"
-        var newTitle = title(for: .normal)
-        newTitle?.removeLast()
-        newTitle?.append(suffix)
-        setTitle(newTitle, for: .normal)
     }
 }
 
@@ -190,9 +147,7 @@ extension DropDownMenu: UITableViewDataSource {
         // TODO: Configure cell with closure from delegate!
         let cell = tableView.dequeueReusableCell(withIdentifier: DropDownMenu.cellIdentifier, for: indexPath)
         let index = indexPath.row
-//        cell.selectionStyle = .none
         cell.textLabel?.text = "#\(index)"
-//        cell.imageView?.image = DropDownMenu.images[index]
         return cell
     }
 }
@@ -204,7 +159,6 @@ extension DropDownMenu: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         selectionHandler()
-//        selectedItemIndex = indexPath.row
         delegate?.dropDownMenu(self, didSelectItemAt: indexPath.row)
     }
 }
