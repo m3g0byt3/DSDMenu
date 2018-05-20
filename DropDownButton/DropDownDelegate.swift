@@ -23,14 +23,14 @@ public protocol DropDownDelegate: NSObjectProtocol {
 
      Default implementation does nothing.
      - parameters:
-        - dropDownMenu: DropDownMenu instance
-        - index: Index
+     - dropDownMenu: DropDownMenu instance
+     - index: Index
      */
     func dropDownMenu(_ dropDownMenu: DropDownMenu, didSelectItemAt index: Int)
 }
 
 extension DropDownDelegate {
 
-    // Default implementation for `dropDownMenu(_:didSelectItemAt:)`
+    // Default implementation for `dropDownMenu(_:didSelectItemAt:), does nothing`
     func dropDownMenu(_ dropDownMenu: DropDownMenu, didSelectItemAt index: Int) {}
 }
