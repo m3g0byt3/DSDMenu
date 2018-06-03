@@ -54,6 +54,7 @@
 		41B80F4D20C4780600A62459 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				41CD4CD82093A7160029800B /* AppDelegate.swift */,
 				41CD4CDA2093A7160029800B /* ViewController.swift */,
 				4145D05720A3A9340005F324 /* Fruit.swift */,
 				4110BA6820C44FF400851420 /* CustomDropDownCellWithoutNib.swift */,
@@ -63,7 +64,6 @@
 				41CD4CE12093A7180029800B /* LaunchScreen.storyboard */,
 				41CD4CDF2093A7180029800B /* Assets.xcassets */,
 				41CD4CE42093A7180029800B /* Info.plist */,
-				41CD4CD82093A7160029800B /* AppDelegate.swift */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -253,6 +253,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -307,6 +308,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -322,7 +324,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 49BLJJ9CJU;
-				INFOPLIST_FILE = DropDownButton/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/DropDownButton/Example/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -341,7 +343,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 49BLJJ9CJU;
-				INFOPLIST_FILE = DropDownButton/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/DropDownButton/Example/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
