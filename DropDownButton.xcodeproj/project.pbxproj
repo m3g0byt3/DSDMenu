@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4110BA6920C44FF400851420 /* CustomDropDownCellWithoutNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4110BA6820C44FF400851420 /* CustomDropDownCellWithoutNib.swift */; };
+		4110BA6C20C450DF00851420 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4110BA6B20C450DF00851420 /* UITableView+Extensions.swift */; };
 		4145D05820A3A9340005F324 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4145D05720A3A9340005F324 /* Fruit.swift */; };
 		4145D05A20A3A9F00005F324 /* DropDownDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4145D05920A3A9F00005F324 /* DropDownDelegate.swift */; };
+		4178298020B213DC00527B4F /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178297F20B213DC00527B4F /* DropDownCell.swift */; };
+		4178298320B2204400527B4F /* CustomDropDownCellWithNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178298120B2204400527B4F /* CustomDropDownCellWithNib.swift */; };
+		4178298420B2204400527B4F /* CustomDropDownCellWithNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4178298220B2204400527B4F /* CustomDropDownCellWithNib.xib */; };
 		41CD4CD92093A7160029800B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD4CD82093A7160029800B /* AppDelegate.swift */; };
 		41CD4CDB2093A7160029800B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD4CDA2093A7160029800B /* ViewController.swift */; };
 		41CD4CDE2093A7160029800B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41CD4CDC2093A7160029800B /* Main.storyboard */; };
@@ -18,8 +23,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4110BA6820C44FF400851420 /* CustomDropDownCellWithoutNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownCellWithoutNib.swift; sourceTree = "<group>"; };
+		4110BA6B20C450DF00851420 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		4145D05720A3A9340005F324 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		4145D05920A3A9F00005F324 /* DropDownDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownDelegate.swift; sourceTree = "<group>"; };
+		4178297F20B213DC00527B4F /* DropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownCell.swift; sourceTree = "<group>"; };
+		4178298120B2204400527B4F /* CustomDropDownCellWithNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownCellWithNib.swift; sourceTree = "<group>"; };
+		4178298220B2204400527B4F /* CustomDropDownCellWithNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomDropDownCellWithNib.xib; sourceTree = "<group>"; };
 		41CD4CD52093A7160029800B /* DropDownButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DropDownButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41CD4CD82093A7160029800B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41CD4CDA2093A7160029800B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -41,6 +51,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		41B80F4D20C4780600A62459 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				41CD4CDA2093A7160029800B /* ViewController.swift */,
+				4145D05720A3A9340005F324 /* Fruit.swift */,
+				4110BA6820C44FF400851420 /* CustomDropDownCellWithoutNib.swift */,
+				4178298120B2204400527B4F /* CustomDropDownCellWithNib.swift */,
+				4178298220B2204400527B4F /* CustomDropDownCellWithNib.xib */,
+				41CD4CDC2093A7160029800B /* Main.storyboard */,
+				41CD4CE12093A7180029800B /* LaunchScreen.storyboard */,
+				41CD4CDF2093A7180029800B /* Assets.xcassets */,
+				41CD4CE42093A7180029800B /* Info.plist */,
+				41CD4CD82093A7160029800B /* AppDelegate.swift */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
 		41CD4CCC2093A7160029800B = {
 			isa = PBXGroup;
 			children = (
@@ -61,14 +88,10 @@
 			isa = PBXGroup;
 			children = (
 				41CD4CEA2093A7290029800B /* DropDownMenu.swift */,
-				41CD4CD82093A7160029800B /* AppDelegate.swift */,
-				41CD4CDA2093A7160029800B /* ViewController.swift */,
 				4145D05920A3A9F00005F324 /* DropDownDelegate.swift */,
-				4145D05720A3A9340005F324 /* Fruit.swift */,
-				41CD4CDC2093A7160029800B /* Main.storyboard */,
-				41CD4CDF2093A7180029800B /* Assets.xcassets */,
-				41CD4CE12093A7180029800B /* LaunchScreen.storyboard */,
-				41CD4CE42093A7180029800B /* Info.plist */,
+				4178297F20B213DC00527B4F /* DropDownCell.swift */,
+				4110BA6B20C450DF00851420 /* UITableView+Extensions.swift */,
+				41B80F4D20C4780600A62459 /* Example */,
 			);
 			path = DropDownButton;
 			sourceTree = "<group>";
@@ -134,6 +157,7 @@
 				41CD4CE32093A7180029800B /* LaunchScreen.storyboard in Resources */,
 				41CD4CE02093A7180029800B /* Assets.xcassets in Resources */,
 				41CD4CDE2093A7160029800B /* Main.storyboard in Resources */,
+				4178298420B2204400527B4F /* CustomDropDownCellWithNib.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,8 +168,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4110BA6C20C450DF00851420 /* UITableView+Extensions.swift in Sources */,
 				4145D05820A3A9340005F324 /* Fruit.swift in Sources */,
 				41CD4CEB2093A7290029800B /* DropDownMenu.swift in Sources */,
+				4110BA6920C44FF400851420 /* CustomDropDownCellWithoutNib.swift in Sources */,
+				4178298320B2204400527B4F /* CustomDropDownCellWithNib.swift in Sources */,
+				4178298020B213DC00527B4F /* DropDownCell.swift in Sources */,
 				41CD4CDB2093A7160029800B /* ViewController.swift in Sources */,
 				41CD4CD92093A7160029800B /* AppDelegate.swift in Sources */,
 				4145D05A20A3A9F00005F324 /* DropDownDelegate.swift in Sources */,

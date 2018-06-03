@@ -9,6 +9,11 @@
 import UIKit
 
 open class DropDownMenu: UIButton {
+
+    // TODO: Add separate constraint for tableView width
+    // TODO: Setup with closures instead of delegate
+    // TODO: Auto-update view based on selected cell's content
+    // TODO: Use POP for cells instead of subclassing
     
     // MARK: - Constants
     
@@ -19,11 +24,15 @@ open class DropDownMenu: UIButton {
     private static let shadowColor: UIColor = .black
     private static let animationDuration: TimeInterval = 0.3
     private static let heightConstraintMultiplier: CGFloat = 1.0
-    private static let cellIdentifier = "cell"
+    private static let cellIdentifier = "DropDownCell"
     
     // MARK: IBOutlets
     
-    @IBOutlet public weak var delegate: DropDownDelegate?
+    public weak var delegate: DropDownDelegate? {
+        didSet {
+            updateCellClass()
+        }
+    }
     
     // MARK: - Properties
     
@@ -48,7 +57,6 @@ open class DropDownMenu: UIButton {
     private lazy var tableView: UITableView = { this in
         this.dataSource = self
         this.delegate = self
-        this.register(UITableViewCell.self, forCellReuseIdentifier: DropDownMenu.cellIdentifier)
         return this
     }(UITableView())
     
@@ -95,7 +103,7 @@ open class DropDownMenu: UIButton {
     // MARK: - Private API
     
     private func setup() {
-        addTarget(self, action: #selector(selectionHandler), for: .touchUpInside)
+        addTarget(self, action: #selector(appearanceUpdate), for: .touchUpInside)
         containerView.addSubview(tableView)
         addSubview(containerView)
         setupConstraints()
@@ -124,7 +132,7 @@ open class DropDownMenu: UIButton {
         ])
     }
     
-    @objc private func selectionHandler() {
+    @objc private func appearanceUpdate() {
         let isExpanded = self.heightConstraint.constant > self.collapsedHeight
         
         layoutIfNeeded()
@@ -132,6 +140,11 @@ open class DropDownMenu: UIButton {
             self.heightConstraint.constant = isExpanded ? self.collapsedHeight : self.expandedHeight
             self.layoutIfNeeded()
         }
+    }
+
+    private func updateCellClass() {
+        let wrapper = CellClassWrapper(cellClass: delegate?.cellClass(for: self))
+        tableView.register(wrapper, forCellReuseIdentifier: DropDownMenu.cellIdentifier)
     }
 }
 
@@ -144,11 +157,7 @@ extension DropDownMenu: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // TODO: Configure cell with closure from delegate!
-        let cell = tableView.dequeueReusableCell(withIdentifier: DropDownMenu.cellIdentifier, for: indexPath)
-        let index = indexPath.row
-        cell.textLabel?.text = "#\(index)"
-        return cell
+        return tableView.dequeueReusableCell(withIdentifier: DropDownMenu.cellIdentifier, for: indexPath)
     }
 }
 
@@ -158,7 +167,11 @@ extension DropDownMenu: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        selectionHandler()
         delegate?.dropDownMenu(self, didSelectItemAt: indexPath.row)
+        appearanceUpdate()
+    }
+
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        delegate?.dropDownMenu(self, willDisplay: cell as! DropDownCell, forRowAt: indexPath.row)
     }
 }
