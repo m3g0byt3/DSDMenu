@@ -15,7 +15,6 @@
 		41CD4CE02093A7180029800B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41CD4CDF2093A7180029800B /* Assets.xcassets */; };
 		41CD4CE32093A7180029800B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41CD4CE12093A7180029800B /* LaunchScreen.storyboard */; };
 		41CD4CEB2093A7290029800B /* DropDownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD4CEA2093A7290029800B /* DropDownMenu.swift */; };
-		41D3064F20A9B08500C990B5 /* ConfigurableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D3064E20A9B08500C990B5 /* ConfigurableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +28,6 @@
 		41CD4CE22093A7180029800B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41CD4CE42093A7180029800B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41CD4CEA2093A7290029800B /* DropDownMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownMenu.swift; sourceTree = "<group>"; };
-		41D3064E20A9B08500C990B5 /* ConfigurableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +65,6 @@
 				41CD4CDA2093A7160029800B /* ViewController.swift */,
 				4145D05920A3A9F00005F324 /* DropDownDelegate.swift */,
 				4145D05720A3A9340005F324 /* Fruit.swift */,
-				41D3064E20A9B08500C990B5 /* ConfigurableCell.swift */,
 				41CD4CDC2093A7160029800B /* Main.storyboard */,
 				41CD4CDF2093A7180029800B /* Assets.xcassets */,
 				41CD4CE12093A7180029800B /* LaunchScreen.storyboard */,
@@ -149,7 +146,6 @@
 			files = (
 				4145D05820A3A9340005F324 /* Fruit.swift in Sources */,
 				41CD4CEB2093A7290029800B /* DropDownMenu.swift in Sources */,
-				41D3064F20A9B08500C990B5 /* ConfigurableCell.swift in Sources */,
 				41CD4CDB2093A7160029800B /* ViewController.swift in Sources */,
 				41CD4CD92093A7160029800B /* AppDelegate.swift in Sources */,
 				4145D05A20A3A9F00005F324 /* DropDownDelegate.swift in Sources */,

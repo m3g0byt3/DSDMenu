@@ -19,23 +19,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FkZ-ib-lgE" customClass="DropDownMenu" customModule="DropDownButton" customModuleProvider="target">
-                                <rect key="frame" x="131.5" y="318.5" width="112.5" height="30"/>
-                                <state key="normal" title="Drop Me!">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="tzm-Yk-ptt">
+                                <rect key="frame" x="94" y="253.5" width="187.5" height="160"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FkZ-ib-lgE" customClass="DropDownMenu" customModule="DropDownButton" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="30"/>
+                                        <state key="normal" title="Drop Down with NIB">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lpv-43-kIh" customClass="DropDownMenu" customModule="DropDownButton" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="130" width="187.5" height="30"/>
+                                        <state key="normal" title="Drop Down without NIB">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="FkZ-ib-lgE" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.3" id="aYv-nJ-MO0"/>
-                            <constraint firstItem="FkZ-ib-lgE" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="gws-62-a9z"/>
-                            <constraint firstItem="FkZ-ib-lgE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ijP-S2-VT7"/>
+                            <constraint firstItem="tzm-Yk-ptt" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="4Kf-gp-4U0"/>
+                            <constraint firstItem="tzm-Yk-ptt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7QQ-ek-Smx"/>
+                            <constraint firstItem="tzm-Yk-ptt" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="ehm-NK-TET"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="dropDown" destination="FkZ-ib-lgE" id="KfF-ez-4Ru"/>
+                        <outlet property="dropDownWithNib" destination="FkZ-ib-lgE" id="KfF-ez-4Ru"/>
+                        <outlet property="dropDownWithoutNib" destination="lpv-43-kIh" id="VmF-SO-EYG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
