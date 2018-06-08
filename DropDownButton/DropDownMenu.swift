@@ -53,7 +53,7 @@ open class DropDownMenu: UIButton {
     
     private var initialIndex = 0
     
-    private weak var heightConstraint: NSLayoutConstraint!
+    private weak var heightConstraint: NSLayoutConstraint?
     
     private lazy var containerView: UIView = { this in
         this.layer.masksToBounds = false
@@ -128,13 +128,14 @@ open class DropDownMenu: UIButton {
         translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        heightConstraint = NSLayoutConstraint(item: containerView,
-                                              attribute: .height,
-                                              relatedBy: .equal,
-                                              toItem: nil,
-                                              attribute: .height,
-                                              multiplier: DropDownMenu.heightConstraintMultiplier,
-                                              constant: collapsedHeight)
+        let constraint = NSLayoutConstraint(item: containerView,
+                                            attribute: .height,
+                                            relatedBy: .equal,
+                                            toItem: nil,
+                                            attribute: .height,
+                                            multiplier: DropDownMenu.heightConstraintMultiplier,
+                                            constant: collapsedHeight)
+        heightConstraint = constraint
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
@@ -143,14 +144,14 @@ open class DropDownMenu: UIButton {
             containerView.topAnchor.constraint(equalTo: bottomAnchor),
             containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            heightConstraint
+            constraint
         ])
     }
     
     @objc private func updateAppearance() {
         let menuHeight = menuState == .collapsed ? expandedHeight : collapsedHeight
         let animations = {
-            self.heightConstraint.constant = menuHeight
+            self.heightConstraint?.constant = menuHeight
             self.layoutIfNeeded()
         }
         let completion: (Bool) -> Void = { _ in
