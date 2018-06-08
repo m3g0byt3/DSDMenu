@@ -83,7 +83,7 @@ open class DropDownMenu: UIButton {
         }
         // Convert the point to the target view's coordinate system.
         // The target view isn't necessarily the immediate subview
-        let convertedPoint = self.convert(point, to: tableView)
+        let convertedPoint = convert(point, to: tableView)
         
         if tableView.bounds.contains(convertedPoint) {
             // The target view may have its view hierarchy,
@@ -138,7 +138,7 @@ open class DropDownMenu: UIButton {
     }
     
     @objc private func appearanceUpdate() {
-        let isExpanded = self.heightConstraint.constant > self.collapsedHeight
+        let isExpanded = heightConstraint.constant > collapsedHeight
         
         layoutIfNeeded()
         UIView.animate(withDuration: DropDownMenu.animationDuration) { [unowned self] in
