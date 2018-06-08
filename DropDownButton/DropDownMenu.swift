@@ -76,6 +76,11 @@ open class DropDownMenu: UIButton {
     
     // See https://developer.apple.com/library/content/qa/qa2013/qa1812.html for details.
     override open func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        // Early exit if disabled, hidden or not visible
+        let viewIsNotVisible = alpha <= 0.01
+        if !isUserInteractionEnabled || isHidden || viewIsNotVisible {
+            return nil
+        }
         // Convert the point to the target view's coordinate system.
         // The target view isn't necessarily the immediate subview
         let convertedPoint = self.convert(point, to: tableView)
