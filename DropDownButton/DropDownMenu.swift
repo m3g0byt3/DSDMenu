@@ -15,6 +15,12 @@ open class DropDownMenu: UIButton {
     // TODO: Auto-update view based on selected cell's content
     // TODO: Use POP for cells instead of subclassing
     
+    // MARK: - Types
+    
+    private enum AnimationState {
+        case beforeAnimation, afterAnimation
+    }
+    
     // MARK: - Constants
     
     private static let heightToCornerRadiusRatio: CGFloat = 1 / 25
@@ -36,12 +42,16 @@ open class DropDownMenu: UIButton {
     
     // MARK: - Properties
     
+    public var menuState: DropDownState = .collapsed
+    
     private let collapsedHeight: CGFloat = 0
     
     private var expandedHeight: CGFloat {
         let rows = delegate?.numberOfItems(in: self) ?? 0
         return bounds.height * CGFloat(rows)
     }
+    
+    private var initialIndex = 0
     
     private weak var heightConstraint: NSLayoutConstraint!
     
@@ -108,7 +118,7 @@ open class DropDownMenu: UIButton {
     // MARK: - Private API
     
     private func setup() {
-        addTarget(self, action: #selector(appearanceUpdate), for: .touchUpInside)
+        addTarget(self, action: #selector(updateAppearance), for: .touchUpInside)
         containerView.addSubview(tableView)
         addSubview(containerView)
         setupConstraints()
@@ -137,13 +147,34 @@ open class DropDownMenu: UIButton {
         ])
     }
     
-    @objc private func appearanceUpdate() {
-        let isExpanded = heightConstraint.constant > collapsedHeight
-        
-        layoutIfNeeded()
-        UIView.animate(withDuration: DropDownMenu.animationDuration) { [unowned self] in
-            self.heightConstraint.constant = isExpanded ? self.collapsedHeight : self.expandedHeight
+    @objc private func updateAppearance() {
+        let menuHeight = menuState == .collapsed ? expandedHeight : collapsedHeight
+        let animations = {
+            self.heightConstraint.constant = menuHeight
             self.layoutIfNeeded()
+        }
+        let completion: (Bool) -> Void = { _ in
+            self.updateViewHierarchy(.afterAnimation);
+            self.menuState.toggle()
+        }
+        
+        updateViewHierarchy(.beforeAnimation)
+        layoutIfNeeded()
+        UIView.animate(withDuration: DropDownMenu.animationDuration, animations: animations, completion: completion)
+    }
+    
+    private func updateViewHierarchy(_ animationState: AnimationState) {
+        guard let superview = superview else { return }
+        let topSubviewIndex = superview.subviews.endIndex - 1
+        
+        switch (animationState, menuState) {
+        case (.beforeAnimation, .collapsed):
+            // It's safe to force unwrap here because we already have non-nil superview
+            initialIndex = superview.subviews.index(of: self)!
+            fallthrough
+        case (.afterAnimation, .expanded) :
+            superview.exchangeSubview(at: topSubviewIndex, withSubviewAt: initialIndex)
+        default: break
         }
     }
 
@@ -173,7 +204,7 @@ extension DropDownMenu: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         delegate?.dropDownMenu(self, didSelectItemAt: indexPath.row)
-        appearanceUpdate()
+        updateAppearance()
     }
 
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
