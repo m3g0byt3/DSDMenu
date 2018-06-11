@@ -26,14 +26,30 @@ class ViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let models = [
-        Fruit(name: "Apple", image: #imageLiteral(resourceName: "apple")),
-        Fruit(name: "Pineapple", image: #imageLiteral(resourceName: "pineapple")),
-        Fruit(name: "Lemon", image: #imageLiteral(resourceName: "lemon")),
-        Fruit(name: "Melon", image: #imageLiteral(resourceName: "watermelon")),
-        Fruit(name: "Raspberry", image: #imageLiteral(resourceName: "raspberry")),
-        Fruit(name: "Orange", image: #imageLiteral(resourceName: "orange")),
-        ]
+    private let fruits = [
+        Meal(name: "Apple", image: #imageLiteral(resourceName: "apple")),
+        Meal(name: "Pineapple", image: #imageLiteral(resourceName: "pineapple")),
+        Meal(name: "Lemon", image: #imageLiteral(resourceName: "lemon")),
+        Meal(name: "Melon", image: #imageLiteral(resourceName: "watermelon")),
+        Meal(name: "Orange", image: #imageLiteral(resourceName: "orange")),
+        Meal(name: "Pear", image: #imageLiteral(resourceName: "pear"))
+    ]
+
+    private let vegetables = [
+        Meal(name: "Garlic", image: #imageLiteral(resourceName: "garlic")),
+        Meal(name: "Aubergine", image: #imageLiteral(resourceName: "aubergine")),
+        Meal(name: "Carrot", image: #imageLiteral(resourceName: "carrot")),
+        Meal(name: "Potatoes", image: #imageLiteral(resourceName: "potatoes")),
+        Meal(name: "Pepper", image: #imageLiteral(resourceName: "pepper")),
+        Meal(name: "Onion", image: #imageLiteral(resourceName: "onion")),
+        Meal(name: "Salad", image: #imageLiteral(resourceName: "salad"))
+    ]
+
+    // MARK: - IBActions
+
+    @IBAction private func reset(_ sender: UIButton) {
+        dropDownWithNib.clearThumbnail()
+    }
 }
 
 // MARK: - DropDownDelegate protocol conformance
@@ -50,18 +66,29 @@ extension ViewController: DropDownDelegate {
     }
     
     func dropDownMenu(_ dropDownMenu: DropDownMenu, willDisplay cell: DropDownCell, forRowAt index: Int) {
-        let model = models[index]
-        guard let customCell = cell as? CustomDropDownCellWithNib else { return }
-        
-        customCell.configureUsing(model)
+        switch cell {
+        case let cell as CustomDropDownCellWithNib:
+            let fruit = fruits[index]
+            cell.configureUsing(fruit)
+        case let cell as CustomDropDownCellWithoutNib:
+            let vegetable = vegetables[index]
+            cell.configureUsing(vegetable)
+        default: break
+        }
     }
     
     func numberOfItems(in dropDownMenu: DropDownMenu) -> Int {
-        
         switch dropDownMenu {
-        case dropDownWithNib: return models.count
-        case dropDownWithoutNib: return 3
+        case dropDownWithNib: return fruits.count
+        case dropDownWithoutNib: return vegetables.count
         default: preconditionFailure("Unknown DropDownMenu instance.")
         }
+    }
+
+    func updateThumbnailOnSelection(in dropDownMenu: DropDownMenu) -> Bool {
+        if dropDownMenu == dropDownWithNib {
+            return true
+        }
+        return false
     }
 }

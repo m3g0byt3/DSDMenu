@@ -21,9 +21,21 @@ final class CustomDropDownCellWithoutNib: DropDownCell {
         preconditionFailure("Not implemented!")
     }
 
+    // MARK: - Public API
+
+    func configureUsing(_ model: Meal) {
+        textLabel?.text = model.name
+        imageView?.image = model.image
+    }
+
+    override func prepareForReuse() {
+        textLabel?.text = nil
+        imageView?.image = nil
+    }
+
     // MARK: - Private API
 
     private func setup() {
-        backgroundColor = .red
+        backgroundColor = .lightGray
     }
 }

@@ -17,7 +17,7 @@ final class CustomDropDownCellWithNib: DropDownCell {
 
     // MARK: - Public API
 
-    func configureUsing(_ model: Fruit) {
+    func configureUsing(_ model: Meal) {
         customTextLabel.text = model.name
         customImageView.image = model.image
     }
