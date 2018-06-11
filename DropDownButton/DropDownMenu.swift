@@ -42,8 +42,8 @@ open class DropDownMenu: UIButton {
     
     // MARK: - Properties
     
-    public var menuState: DropDownState = .collapsed
     
+    open var menuState: DropDownState = .collapsed
     private let collapsedHeight: CGFloat = 0
     
     private var expandedHeight: CGFloat {
@@ -51,7 +51,7 @@ open class DropDownMenu: UIButton {
         return bounds.height * CGFloat(rows)
     }
     
-    private var initialIndex = 0
+    private var savedIndex = 0
 
     private var savedTitle = ""
     
@@ -190,10 +190,10 @@ open class DropDownMenu: UIButton {
         switch (animationState, menuState) {
         case (.beforeAnimation, .collapsed):
             // It's safe to force unwrap here because we already have non-nil superview
-            initialIndex = superview.subviews.index(of: self)!
+            savedIndex = superview.subviews.index(of: self)!
             fallthrough
         case (.afterAnimation, .expanded) :
-            superview.exchangeSubview(at: topSubviewIndex, withSubviewAt: initialIndex)
+            superview.exchangeSubview(at: topSubviewIndex, withSubviewAt: savedIndex)
         default: break
         }
     }
