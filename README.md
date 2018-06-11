@@ -2,6 +2,7 @@
 — **D**ead **S**impe **D**ropdown **M**enu
 
 A simple drop-down menu written in Swift.
+
 ![](example.gif)
 
 
