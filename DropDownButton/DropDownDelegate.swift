@@ -64,7 +64,7 @@ extension DropDownDelegate {
     // Default implementation for `dropDownMenu(_:didSelectItemAt:)`, does nothing.
     func dropDownMenu(_ dropDownMenu: DropDownMenu, didSelectItemAt index: Int) {}
 
-    // Default implementation for `dropDownMenu(_:willDisplay:forRowAt:), does nothing.`
+    // Default implementation for `dropDownMenu(_:willDisplay:forRowAt:)`, does nothing.
     func dropDownMenu(_ dropDownMenu: DropDownMenu, willDisplay cell: DropDownCell, forRowAt index: Int) {}
 
     // Default implementation for `updateThumbnailOnSelection(in:)`, returns false.

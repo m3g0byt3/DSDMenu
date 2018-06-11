@@ -9,11 +9,6 @@
 import UIKit
 
 open class DropDownMenu: UIButton {
-
-    // TODO: Add separate constraint for tableView width
-    // TODO: Setup with closures instead of delegate
-    // TODO: Auto-update view based on selected cell's content
-    // TODO: Use POP for cells instead of subclassing
     
     // MARK: - Types
     
@@ -32,7 +27,7 @@ open class DropDownMenu: UIButton {
     private static let heightConstraintMultiplier: CGFloat = 1.0
     private static let cellIdentifier = "DropDownCell"
     
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
     
     public weak var delegate: DropDownDelegate? {
         didSet {
@@ -40,10 +35,12 @@ open class DropDownMenu: UIButton {
         }
     }
     
-    // MARK: - Properties
-    
+    // MARK: - Public Properties
     
     open var menuState: DropDownState = .collapsed
+
+    // MARK: - Private Properties
+
     private let collapsedHeight: CGFloat = 0
     
     private var expandedHeight: CGFloat {
@@ -169,10 +166,12 @@ open class DropDownMenu: UIButton {
     
     @objc private func updateAppearance() {
         let menuHeight = menuState == .collapsed ? expandedHeight : collapsedHeight
+
         let animations = {
             self.heightConstraint?.constant = menuHeight
             self.layoutIfNeeded()
         }
+
         let completion: (Bool) -> Void = { _ in
             self.updateViewHierarchy(.afterAnimation);
             self.menuState.toggle()
@@ -245,6 +244,7 @@ extension DropDownMenu: UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // It's safe to force unwrap here because we already returned a `DropDownCell` instance in `cellForRow(at:)`
         delegate?.dropDownMenu(self, willDisplay: cell as! DropDownCell, forRowAt: indexPath.row)
     }
 }
