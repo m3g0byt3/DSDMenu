@@ -9,9 +9,15 @@
 import UIKit
 
 open class DropDownMenu: UIButton {
-
+    
+    // MARK: - Types
+    
+    private enum AnimationState {
+        case beforeAnimation, afterAnimation
+    }
+    
     // MARK: - Constants
-
+    
     private static let heightToCornerRadiusRatio: CGFloat = 1 / 25
     private static let shadowOffset = CGSize(width: 1.0, height: 1.0)
     private static let shadowOpacity: Float = 1 / 3
@@ -19,28 +25,35 @@ open class DropDownMenu: UIButton {
     private static let shadowColor: UIColor = .black
     private static let animationDuration: TimeInterval = 0.3
     private static let heightConstraintMultiplier: CGFloat = 1.0
-    private static let cellIdentifier = "cell"
-
-    // MARK: IBOutlets
-
-    @IBOutlet public weak var delegate: DropDownDelegate?
-
-    // MARK: - Properties
-
-    public var selectedItemIndex = 0 {
+    private static let cellIdentifier = "DropDownCell"
+    
+    // MARK: - IBOutlets
+    
+    public weak var delegate: DropDownDelegate? {
         didSet {
-            updateView()
+            updateCellClass()
         }
     }
+    
+    // MARK: - Public Properties
+    
+    open var menuState: DropDownState = .collapsed
+
+    // MARK: - Private Properties
+
     private let collapsedHeight: CGFloat = 0
+    
     private var expandedHeight: CGFloat {
         let rows = delegate?.numberOfItems(in: self) ?? 0
         return bounds.height * CGFloat(rows)
-
     }
+    
+    private var savedIndex = 0
 
-    private weak var heightConstraint: NSLayoutConstraint!
-
+    private var savedTitle = ""
+    
+    private weak var heightConstraint: NSLayoutConstraint?
+    
     private lazy var containerView: UIView = { this in
         this.layer.masksToBounds = false
         this.layer.shadowColor = DropDownMenu.shadowColor.cgColor
@@ -49,43 +62,53 @@ open class DropDownMenu: UIButton {
         this.layer.shadowRadius = DropDownMenu.shadowRadius
         return this
     }(UIView())
-
+    
     private lazy var tableView: UITableView = { this in
         this.dataSource = self
         this.delegate = self
-        this.register(UITableViewCell.self, forCellReuseIdentifier: DropDownMenu.cellIdentifier)
         return this
     }(UITableView())
 
+    private lazy var thumbnailImageView: UIImageView = { this in
+        this.isUserInteractionEnabled = false
+        this.contentMode = .scaleAspectFit
+        return this
+    }(UIImageView())
+    
     // MARK: - Inits
-
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
-
+    
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-
+    
     // MARK: - Public API
-
+    
     // See https://developer.apple.com/library/content/qa/qa2013/qa1812.html for details.
     override open func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        // Early exit if disabled, hidden or not visible
+        let viewIsNotVisible = alpha <= 0.01
+        if !isUserInteractionEnabled || isHidden || viewIsNotVisible {
+            return nil
+        }
         // Convert the point to the target view's coordinate system.
         // The target view isn't necessarily the immediate subview
-        let convertedPoint = self.convert(point, to: tableView)
-
+        let convertedPoint = convert(point, to: tableView)
+        
         if tableView.bounds.contains(convertedPoint) {
             // The target view may have its view hierarchy,
             // so call its hitTest method to return the right hit-test view
             return tableView.hitTest(convertedPoint, with: event)
         }
-
+        
         return super.hitTest(point, with: event)
     }
-
+    
     override open func layoutSubviews() {
         super.layoutSubviews()
         // Set `separatorStyle = .none` at every subviews layout due to bug https://openradar.appspot.com/21940268
@@ -97,43 +120,39 @@ open class DropDownMenu: UIButton {
         tableView.layer.cornerRadius = tableView.bounds.width * DropDownMenu.heightToCornerRadiusRatio
     }
 
+    open func clearThumbnail() {
+        thumbnailImageView.image = nil
+        setTitle(savedTitle, for: .normal)
+    }
+    
     // MARK: - Private API
-
+    
     private func setup() {
-        addTarget(self, action: #selector(selectionHandler), for: .touchUpInside)
+        addTarget(self, action: #selector(updateAppearance), for: .touchUpInside)
         containerView.addSubview(tableView)
         addSubview(containerView)
+        addSubview(thumbnailImageView)
         setupConstraints()
     }
-
-    // FIXME: remove this!
-    private func test() {
-        layoutIfNeeded()
-        let cell = UITableViewCell(frame: frame)
-        cell.textLabel?.text = "#\(selectedItemIndex)"
-//        cell.imageView?.image = DropDownMenu.images[selectedItemIndex]
-        let snapshot = cell.snapshotImage()
-        setImage(snapshot?.withRenderingMode(.alwaysOriginal), for: .normal)
-
-        // FIXME: remove this!
-        let title = titleLabel?.text?.appending(" ▼")
-        titleLabel?.text = title
-        setTitle(title, for: .normal)
-        //        updateTitle()
-    }
-
+    
     private func setupConstraints() {
         translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        heightConstraint = NSLayoutConstraint(item: containerView,
-                                              attribute: .height,
-                                              relatedBy: .equal,
-                                              toItem: nil,
-                                              attribute: .height,
-                                              multiplier: DropDownMenu.heightConstraintMultiplier,
-                                              constant: collapsedHeight)
+        thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
+        let constraint = NSLayoutConstraint(item: containerView,
+                                            attribute: .height,
+                                            relatedBy: .equal,
+                                            toItem: nil,
+                                            attribute: .height,
+                                            multiplier: DropDownMenu.heightConstraintMultiplier,
+                                            constant: collapsedHeight)
+        heightConstraint = constraint
         NSLayoutConstraint.activate([
+            thumbnailImageView.topAnchor.constraint(equalTo: topAnchor),
+            thumbnailImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            thumbnailImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            thumbnailImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
             tableView.topAnchor.constraint(equalTo: containerView.topAnchor),
@@ -141,38 +160,58 @@ open class DropDownMenu: UIButton {
             containerView.topAnchor.constraint(equalTo: bottomAnchor),
             containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            heightConstraint
+            constraint
         ])
     }
+    
+    @objc private func updateAppearance() {
+        let menuHeight = menuState == .collapsed ? expandedHeight : collapsedHeight
 
-    @objc private func selectionHandler() {
-        let isExpanded = self.heightConstraint.constant > self.collapsedHeight
-
-        layoutIfNeeded()
-        UIView.animate(withDuration: DropDownMenu.animationDuration) { [unowned self] in
-            self.heightConstraint.constant = isExpanded ? self.collapsedHeight : self.expandedHeight
+        let animations = {
+            self.heightConstraint?.constant = menuHeight
             self.layoutIfNeeded()
-            self.updateTitle()
+        }
+
+        let completion: (Bool) -> Void = { _ in
+            self.updateViewHierarchy(.afterAnimation);
+            self.menuState.toggle()
+        }
+        
+        updateViewHierarchy(.beforeAnimation)
+        layoutIfNeeded()
+        UIView.animate(withDuration: DropDownMenu.animationDuration, animations: animations, completion: completion)
+    }
+    
+    private func updateViewHierarchy(_ animationState: AnimationState) {
+        guard let superview = superview else { return }
+        let topSubviewIndex = superview.subviews.endIndex - 1
+        
+        switch (animationState, menuState) {
+        case (.beforeAnimation, .collapsed):
+            // It's safe to force unwrap here because we already have non-nil superview
+            savedIndex = superview.subviews.index(of: self)!
+            fallthrough
+        case (.afterAnimation, .expanded) :
+            superview.exchangeSubview(at: topSubviewIndex, withSubviewAt: savedIndex)
+        default: break
         }
     }
 
-    private func updateView() {
-        let index = IndexPath(row: selectedItemIndex, section: 0)
-        let cell = tableView.cellForRow(at: index)
-        if let snapshot = cell?.snapshotImage(), snapshot.size.width > 0, snapshot.size.height > 0 {
-            setImage(snapshot.withRenderingMode(.alwaysOriginal), for: .normal)
-        }
+    private func updateCellClass() {
+        let wrapper = CellClassWrapper(cellClass: delegate?.cellClass(for: self))
+        tableView.register(wrapper, forCellReuseIdentifier: DropDownMenu.cellIdentifier)
     }
 
-    private func updateTitle() {
-        // FIXME: remove this!
-        let isExpanded = self.heightConstraint.constant > self.collapsedHeight
+    private func updateThumbnailUsingCellAt(_ indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? DropDownCell {
 
-        let suffix = isExpanded ? "▲" : "▼"
-        var newTitle = title(for: .normal)
-        newTitle?.removeLast()
-        newTitle?.append(suffix)
-        setTitle(newTitle, for: .normal)
+            if let currentTitle = currentTitle {
+                savedTitle = currentTitle
+                setTitle(nil, for: .normal)
+            }
+
+            thumbnailImageView.image = cell.thumbnailView.snapshotImage()
+        }
     }
 }
 
@@ -183,26 +222,29 @@ extension DropDownMenu: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return delegate?.numberOfItems(in: self) ?? 0
     }
-
+    
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // TODO: Configure cell with closure from delegate!
-        let cell = tableView.dequeueReusableCell(withIdentifier: DropDownMenu.cellIdentifier, for: indexPath)
-        let index = indexPath.row
-//        cell.selectionStyle = .none
-        cell.textLabel?.text = "#\(index)"
-//        cell.imageView?.image = DropDownMenu.images[index]
-        return cell
+        return tableView.dequeueReusableCell(withIdentifier: DropDownMenu.cellIdentifier, for: indexPath)
     }
 }
 
 // MARK: - UITableViewDelegate protocol conformance
 
 extension DropDownMenu: UITableViewDelegate {
-
+    
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        selectionHandler()
-//        selectedItemIndex = indexPath.row
         delegate?.dropDownMenu(self, didSelectItemAt: indexPath.row)
+        
+        if let delegate = delegate, delegate.updateThumbnailOnSelection(in: self) {
+            updateThumbnailUsingCellAt(indexPath)
+        }
+
+        updateAppearance()
+    }
+
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // It's safe to force unwrap here because we already returned a `DropDownCell` instance in `cellForRow(at:)`
+        delegate?.dropDownMenu(self, willDisplay: cell as! DropDownCell, forRowAt: indexPath.row)
     }
 }

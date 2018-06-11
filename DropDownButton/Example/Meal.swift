@@ -1,5 +1,5 @@
 //
-//  Fruit.swift
+//  Meal.swift
 //  DropDownMenu
 //
 //  Created by m3g0byt3 on 10/05/2018.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-struct Fruit {
-
+struct Meal {
+    
     let name: String
     let image: UIImage
 }
