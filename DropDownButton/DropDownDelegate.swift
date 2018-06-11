@@ -45,6 +45,15 @@ public protocol DropDownDelegate: class {
         - index: Index
      */
     func dropDownMenu(_ dropDownMenu: DropDownMenu, willDisplay cell: DropDownCell, forRowAt index: Int)
+
+    /**
+     Optional method, return `true` to update menu's thumbnail based on selected item.
+
+     Default implementation returns `false` - no thumbnail update occurs.
+     - parameter dropDownMenu: DropDownMenu instance
+     - returns: boolen value
+     */
+    func updateThumbnailOnSelection(in dropDownMenu: DropDownMenu) -> Bool
 }
 
 extension DropDownDelegate {
@@ -57,4 +66,7 @@ extension DropDownDelegate {
 
     // Default implementation for `dropDownMenu(_:willDisplay:forRowAt:), does nothing.`
     func dropDownMenu(_ dropDownMenu: DropDownMenu, willDisplay cell: DropDownCell, forRowAt index: Int) {}
+
+    // Default implementation for `updateThumbnailOnSelection(in:)`, returns false.
+    func updateThumbnailOnSelection(in dropDownMenu: DropDownMenu) -> Bool { return false }
 }
