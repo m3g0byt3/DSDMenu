@@ -8,4 +8,4 @@
 
 import UIKit
 
-open class DropDownCell: UITableViewCell {}
+open class DropDownCell: UITableViewCell, Thumbnailable {}

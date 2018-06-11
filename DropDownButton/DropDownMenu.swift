@@ -52,6 +52,8 @@ open class DropDownMenu: UIButton {
     }
     
     private var initialIndex = 0
+
+    private var savedTitle = ""
     
     private weak var heightConstraint: NSLayoutConstraint?
     
@@ -69,6 +71,12 @@ open class DropDownMenu: UIButton {
         this.delegate = self
         return this
     }(UITableView())
+
+    private lazy var thumbnailImageView: UIImageView = { this in
+        this.isUserInteractionEnabled = false
+        this.contentMode = .scaleAspectFit
+        return this
+    }(UIImageView())
     
     // MARK: - Inits
     
@@ -114,6 +122,11 @@ open class DropDownMenu: UIButton {
         containerView.layer.cornerRadius = containerView.bounds.width * DropDownMenu.heightToCornerRadiusRatio
         tableView.layer.cornerRadius = tableView.bounds.width * DropDownMenu.heightToCornerRadiusRatio
     }
+
+    open func clearThumbnail() {
+        thumbnailImageView.image = nil
+        setTitle(savedTitle, for: .normal)
+    }
     
     // MARK: - Private API
     
@@ -121,6 +134,7 @@ open class DropDownMenu: UIButton {
         addTarget(self, action: #selector(updateAppearance), for: .touchUpInside)
         containerView.addSubview(tableView)
         addSubview(containerView)
+        addSubview(thumbnailImageView)
         setupConstraints()
     }
     
@@ -128,6 +142,7 @@ open class DropDownMenu: UIButton {
         translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         containerView.translatesAutoresizingMaskIntoConstraints = false
+        thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
         let constraint = NSLayoutConstraint(item: containerView,
                                             attribute: .height,
                                             relatedBy: .equal,
@@ -137,6 +152,10 @@ open class DropDownMenu: UIButton {
                                             constant: collapsedHeight)
         heightConstraint = constraint
         NSLayoutConstraint.activate([
+            thumbnailImageView.topAnchor.constraint(equalTo: topAnchor),
+            thumbnailImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            thumbnailImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            thumbnailImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
             tableView.topAnchor.constraint(equalTo: containerView.topAnchor),
@@ -183,6 +202,18 @@ open class DropDownMenu: UIButton {
         let wrapper = CellClassWrapper(cellClass: delegate?.cellClass(for: self))
         tableView.register(wrapper, forCellReuseIdentifier: DropDownMenu.cellIdentifier)
     }
+
+    private func updateThumbnailUsingCellAt(_ indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? DropDownCell {
+
+            if let currentTitle = currentTitle {
+                savedTitle = currentTitle
+                setTitle(nil, for: .normal)
+            }
+
+            thumbnailImageView.image = cell.thumbnailView.snapshotImage()
+        }
+    }
 }
 
 // MARK: - UITableViewDataSource protocol conformance
@@ -205,6 +236,11 @@ extension DropDownMenu: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         delegate?.dropDownMenu(self, didSelectItemAt: indexPath.row)
+        
+        if let delegate = delegate, delegate.updateThumbnailOnSelection(in: self) {
+            updateThumbnailUsingCellAt(indexPath)
+        }
+
         updateAppearance()
     }
 
