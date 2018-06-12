@@ -26,17 +26,19 @@ open class DropDownMenu: UIButton {
     private static let animationDuration: TimeInterval = 0.3
     private static let heightConstraintMultiplier: CGFloat = 1.0
     private static let cellIdentifier = "DropDownCell"
-    
-    // MARK: - IBOutlets
-    
+
+    // MARK: - Public Properties
+    // Little hacky, but allows to connect non-objc `delegate` property in the Interface Builder
+    #if TARGET_INTERFACE_BUILDER
+    @IBOutlet private weak var delegate: AnyObject?
+    #else
     public weak var delegate: DropDownDelegate? {
         didSet {
             updateCellClass()
         }
     }
-    
-    // MARK: - Public Properties
-    
+    #endif
+
     public var menuState: DropDownState = .collapsed
 
     // MARK: - Private Properties
@@ -138,7 +140,16 @@ open class DropDownMenu: UIButton {
         
         return super.hitTest(point, with: event)
     }
-    
+
+    // Little hacky, but allows to connect non-objc `delegate` property in the Interface Builder
+    override open func setValue(_ value: Any?, forUndefinedKey key: String) {
+        if key == "delegate" {
+            delegate = value as? DropDownDelegate
+        } else {
+            super.setValue(value, forUndefinedKey: key)
+        }
+    }
+
     override open func layoutSubviews() {
         super.layoutSubviews()
         // Set `separatorStyle = .none` at every subviews layout due to bug https://openradar.appspot.com/21940268
