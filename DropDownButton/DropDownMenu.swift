@@ -10,13 +10,13 @@ import UIKit
 
 open class DropDownMenu: UIButton {
     
-    // MARK: - Types
+    // MARK: - Types (internal usage only)
     
     private enum AnimationState {
         case beforeAnimation, afterAnimation
     }
     
-    // MARK: - Constants
+    // MARK: - Constants (internal usage only)
     
     private static let heightToCornerRadiusRatio: CGFloat = 1 / 25
     private static let shadowOffset = CGSize(width: 1.0, height: 1.0)
@@ -28,10 +28,13 @@ open class DropDownMenu: UIButton {
     private static let cellIdentifier = "DropDownCell"
 
     // MARK: - Public Properties
-    // Little hacky, but allows to connect non-objc `delegate` property in the Interface Builder
+
+    // Little hacky, but allows to connect non-objc `delegate` property in the Interface Builder.
     #if TARGET_INTERFACE_BUILDER
     @IBOutlet private weak var delegate: AnyObject?
     #else
+
+    /// Delegate that conforms to the `DropDownDelegate` protocol.
     public weak var delegate: DropDownDelegate? {
         didSet {
             updateCellClass()
@@ -39,6 +42,7 @@ open class DropDownMenu: UIButton {
     }
     #endif
 
+    /// State of menu, currently supported states are `.collapsed` and `.expanded`.
     public var menuState: DropDownState = .collapsed
 
     // MARK: - Private Properties
@@ -76,8 +80,6 @@ open class DropDownMenu: UIButton {
         this.contentMode = .scaleAspectFit
         return this
     }(UIImageView())
-    
-    // MARK: - Inits
 
     /// - warning: ⚠️ Dispatched once ⚠️
     private lazy var setupConstraints: () -> Void = { [weak self] in
@@ -107,11 +109,10 @@ open class DropDownMenu: UIButton {
             containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
             constraint
         ])
-        // Return dummy closure
         return {}
     }()
 
-    // MARK: - Delegate/closure getters
+    // MARK: - Delegate/closure getters (internal usage only)
 
     private var numberOfItems: Int {
         return delegate?.numberOfItems(in: self) ?? _numberOfItems
@@ -133,14 +134,16 @@ open class DropDownMenu: UIButton {
         return delegate?.dropDownMenu ?? { [weak self] (_, cell, index) in self?._willDisplayCell?(cell, index) }
     }
 
-    // MARK: - Ivars for getters
-    // Have `internal` access modified because they should be available in extension
+    // MARK: - Ivars for getters (internal usage only)
+
+    // Have `internal` access modified because they should be available in extension.
     var _numberOfItems = 0
     var _cellClass = DropDownCell.self
     var _updateThumbnailOnSelection = false
     var _didSelectItem: ((_ index: Int) -> Void)?
     var _willDisplayCell: ((_ cell: DropDownCell, _ index: Int) -> Void)?
 
+    // MARK: - Initialization
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -152,7 +155,7 @@ open class DropDownMenu: UIButton {
         setup()
     }
     
-    // MARK: - Public API
+    // MARK: - Necessary Overriding
     
     // See https://developer.apple.com/library/content/qa/qa2013/qa1812.html for details.
     override open func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
@@ -174,7 +177,7 @@ open class DropDownMenu: UIButton {
         return super.hitTest(point, with: event)
     }
 
-    // Little hacky, but allows to connect non-objc `delegate` property in the Interface Builder
+    // Little hacky, but allows to connect non-objc `delegate` property in the Interface Builder.
     override open func setValue(_ value: Any?, forUndefinedKey key: String) {
         if key == "delegate" {
             delegate = value as? DropDownDelegate
@@ -183,6 +186,7 @@ open class DropDownMenu: UIButton {
         }
     }
 
+    // Update various non-AL UIs.
     override open func layoutSubviews() {
         super.layoutSubviews()
         // Set `separatorStyle = .none` at every subviews layout due to bug https://openradar.appspot.com/21940268
@@ -194,29 +198,48 @@ open class DropDownMenu: UIButton {
         tableView.layer.cornerRadius = tableView.bounds.width * DropDownMenu.heightToCornerRadiusRatio
     }
 
-    // Setup required constraints (once)
+    // Setup required constraints (once).
     override open func updateConstraints() {
         setupConstraints()
         super.updateConstraints()
     }
 
-    // Save assigned non-nil title
+    // Save assigned non-nil title.
     override open func setTitle(_ title: String?, for state: UIControlState) {
         super.setTitle(title, for: state)
         savedTitle = title ?? savedTitle
     }
 
+    // MARK: - Public API
+
+    /// Clears menu auto-updated thumbnail (if delegate allows auto-update) and sets back latest `title` value.
     open func clearThumbnail() {
         thumbnailImageView.image = nil
         setTitle(savedTitle, for: .normal)
     }
 
+    /// Reload a `DropDownMenu` instance.
     open func reload() {
         configurationCLosure?(self)
         updateCellClass()
         tableView.reloadData()
     }
 
+    /**
+     Menu uses closure passed to this method to configure itself if no delegate provided.
+
+     Example of configuration closure:
+     ```
+     menu.configure { menu in
+        menu.cellClass(DropDownCell.self)
+            .numberOfItems(10)
+            .updateThumbnailOnSelection(true)
+            .didSelectItem { index in print(index) }
+            .willDisplayCell { (cell, index) in print(cell, index) }
+     }
+     ```
+     - parameter closure: Configuration closure that will be used instead of delegate.
+     */
     open func configure(using closure: @escaping (DropDownMenu) -> Void) {
         configurationCLosure = closure
         reload()
@@ -230,7 +253,7 @@ open class DropDownMenu: UIButton {
         addSubview(thumbnailImageView)
         savedTitle = currentTitle ?? savedTitle
     }
-    
+
     @objc private func updateAppearance() {
         let menuHeight = menuState == .collapsed ? expandedHeight : collapsedHeight
 

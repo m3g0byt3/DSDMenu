@@ -11,14 +11,14 @@ import Foundation
 public protocol DropDownDelegate: class {
 
     /**
-     Required method, provides number of items in menu
+     Required method, provides number of items in menu.
      - parameter DropDownMenu: DropDownMenu instance
      - returns: number of items in menu
      */
     func numberOfItems(in dropDownMenu: DropDownMenu) -> Int
 
     /**
-     Optional method, returns type of cell used in DropDownMenu.
+     Optional method, provides type of cell used in DropDownMenu.
 
      Default implementation returns `DropDownCell.self`.
      - parameter dropDownMenu: DropDownMenu instance
@@ -36,7 +36,7 @@ public protocol DropDownDelegate: class {
     func dropDownMenu(_ dropDownMenu: DropDownMenu, didSelectItemAt index: Int)
 
     /**
-     Optional method, called when menu is ready to display a cell.
+     Optional method, called when menu is ready to display a particular cell.
 
      Default implementation does nothing.
      - parameters:
