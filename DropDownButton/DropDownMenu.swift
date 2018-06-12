@@ -78,6 +78,38 @@ open class DropDownMenu: UIButton {
     
     // MARK: - Inits
 
+    /// - warning: ⚠️ Dispatched once ⚠️
+    private lazy var setupConstraints: () -> Void = { [weak self] in
+        translatesAutoresizingMaskIntoConstraints = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
+        let constraint = NSLayoutConstraint(item: containerView,
+                                            attribute: .height,
+                                            relatedBy: .equal,
+                                            toItem: nil,
+                                            attribute: .height,
+                                            multiplier: DropDownMenu.heightConstraintMultiplier,
+                                            constant: collapsedHeight)
+        heightConstraint = constraint
+        NSLayoutConstraint.activate([
+            thumbnailImageView.topAnchor.constraint(equalTo: topAnchor),
+            thumbnailImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            thumbnailImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            thumbnailImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tableView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+            containerView.topAnchor.constraint(equalTo: bottomAnchor),
+            containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            constraint
+        ])
+        // Return dummy closure
+        return {}
+    }()
+
     // MARK: - Delegate/closure getters
 
     private var numberOfItems: Int {
@@ -161,6 +193,12 @@ open class DropDownMenu: UIButton {
         tableView.layer.cornerRadius = tableView.bounds.width * DropDownMenu.heightToCornerRadiusRatio
     }
 
+    // Setup required constraints (once)
+    override open func updateConstraints() {
+        setupConstraints()
+        super.updateConstraints()
+    }
+
     open func clearThumbnail() {
         thumbnailImageView.image = nil
         setTitle(savedTitle, for: .normal)
@@ -184,36 +222,6 @@ open class DropDownMenu: UIButton {
         containerView.addSubview(tableView)
         addSubview(containerView)
         addSubview(thumbnailImageView)
-        setupConstraints()
-    }
-    
-    private func setupConstraints() {
-        translatesAutoresizingMaskIntoConstraints = false
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
-        let constraint = NSLayoutConstraint(item: containerView,
-                                            attribute: .height,
-                                            relatedBy: .equal,
-                                            toItem: nil,
-                                            attribute: .height,
-                                            multiplier: DropDownMenu.heightConstraintMultiplier,
-                                            constant: collapsedHeight)
-        heightConstraint = constraint
-        NSLayoutConstraint.activate([
-            thumbnailImageView.topAnchor.constraint(equalTo: topAnchor),
-            thumbnailImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            thumbnailImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            thumbnailImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tableView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: containerView.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-            containerView.topAnchor.constraint(equalTo: bottomAnchor),
-            containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            constraint
-        ])
     }
     
     @objc private func updateAppearance() {
