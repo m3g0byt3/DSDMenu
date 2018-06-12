@@ -199,6 +199,12 @@ open class DropDownMenu: UIButton {
         super.updateConstraints()
     }
 
+    // Save assigned non-nil title
+    override open func setTitle(_ title: String?, for state: UIControlState) {
+        super.setTitle(title, for: state)
+        savedTitle = title ?? savedTitle
+    }
+
     open func clearThumbnail() {
         thumbnailImageView.image = nil
         setTitle(savedTitle, for: .normal)
@@ -222,6 +228,7 @@ open class DropDownMenu: UIButton {
         containerView.addSubview(tableView)
         addSubview(containerView)
         addSubview(thumbnailImageView)
+        savedTitle = currentTitle ?? savedTitle
     }
     
     @objc private func updateAppearance() {
@@ -264,12 +271,7 @@ open class DropDownMenu: UIButton {
 
     private func updateThumbnailUsingCellAt(_ indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? DropDownCell {
-
-            if let currentTitle = currentTitle {
-                savedTitle = currentTitle
-                setTitle(nil, for: .normal)
-            }
-
+            setTitle(nil, for: .normal)
             thumbnailImageView.image = cell.thumbnailView.snapshotImage()
         }
     }
