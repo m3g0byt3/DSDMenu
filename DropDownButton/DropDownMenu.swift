@@ -61,6 +61,7 @@ open class DropDownMenu: UIButton {
         this.layer.shadowOffset = DropDownMenu.shadowOffset
         this.layer.shadowOpacity = DropDownMenu.shadowOpacity
         this.layer.shadowRadius = DropDownMenu.shadowRadius
+        this.addSubview(tableView)
         return this
     }(UIView())
     
@@ -77,6 +78,38 @@ open class DropDownMenu: UIButton {
     }(UIImageView())
     
     // MARK: - Inits
+
+    /// - warning: ⚠️ Dispatched once ⚠️
+    private lazy var setupConstraints: () -> Void = { [weak self] in
+        translatesAutoresizingMaskIntoConstraints = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
+        let constraint = NSLayoutConstraint(item: containerView,
+                                            attribute: .height,
+                                            relatedBy: .equal,
+                                            toItem: nil,
+                                            attribute: .height,
+                                            multiplier: DropDownMenu.heightConstraintMultiplier,
+                                            constant: collapsedHeight)
+        heightConstraint = constraint
+        NSLayoutConstraint.activate([
+            thumbnailImageView.topAnchor.constraint(equalTo: topAnchor),
+            thumbnailImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            thumbnailImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            thumbnailImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tableView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+            containerView.topAnchor.constraint(equalTo: bottomAnchor),
+            containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            constraint
+        ])
+        // Return dummy closure
+        return {}
+    }()
 
     // MARK: - Delegate/closure getters
 
@@ -161,6 +194,18 @@ open class DropDownMenu: UIButton {
         tableView.layer.cornerRadius = tableView.bounds.width * DropDownMenu.heightToCornerRadiusRatio
     }
 
+    // Setup required constraints (once)
+    override open func updateConstraints() {
+        setupConstraints()
+        super.updateConstraints()
+    }
+
+    // Save assigned non-nil title
+    override open func setTitle(_ title: String?, for state: UIControlState) {
+        super.setTitle(title, for: state)
+        savedTitle = title ?? savedTitle
+    }
+
     open func clearThumbnail() {
         thumbnailImageView.image = nil
         setTitle(savedTitle, for: .normal)
@@ -181,39 +226,9 @@ open class DropDownMenu: UIButton {
     
     private func setup() {
         addTarget(self, action: #selector(updateAppearance), for: .touchUpInside)
-        containerView.addSubview(tableView)
         addSubview(containerView)
         addSubview(thumbnailImageView)
-        setupConstraints()
-    }
-    
-    private func setupConstraints() {
-        translatesAutoresizingMaskIntoConstraints = false
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
-        let constraint = NSLayoutConstraint(item: containerView,
-                                            attribute: .height,
-                                            relatedBy: .equal,
-                                            toItem: nil,
-                                            attribute: .height,
-                                            multiplier: DropDownMenu.heightConstraintMultiplier,
-                                            constant: collapsedHeight)
-        heightConstraint = constraint
-        NSLayoutConstraint.activate([
-            thumbnailImageView.topAnchor.constraint(equalTo: topAnchor),
-            thumbnailImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            thumbnailImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            thumbnailImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tableView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: containerView.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-            containerView.topAnchor.constraint(equalTo: bottomAnchor),
-            containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            constraint
-        ])
+        savedTitle = currentTitle ?? savedTitle
     }
     
     @objc private func updateAppearance() {
@@ -236,15 +251,14 @@ open class DropDownMenu: UIButton {
     
     private func updateViewHierarchy(_ animationState: AnimationState) {
         guard let superview = superview else { return }
-        let topSubviewIndex = superview.subviews.endIndex - 1
-        
+
         switch (animationState, menuState) {
         case (.beforeAnimation, .collapsed):
             // It's safe to force unwrap here because we already have non-nil superview
             savedIndex = superview.subviews.index(of: self)!
             fallthrough
         case (.afterAnimation, .expanded) :
-            superview.exchangeSubview(at: topSubviewIndex, withSubviewAt: savedIndex)
+            superview.exchangeSubview(at: superview.subviews.lastIndex, withSubviewAt: savedIndex)
         default: break
         }
     }
@@ -256,12 +270,7 @@ open class DropDownMenu: UIButton {
 
     private func updateThumbnailUsingCellAt(_ indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? DropDownCell {
-
-            if let currentTitle = currentTitle {
-                savedTitle = currentTitle
-                setTitle(nil, for: .normal)
-            }
-
+            setTitle(nil, for: .normal)
             thumbnailImageView.image = cell.thumbnailView.snapshotImage()
         }
     }
