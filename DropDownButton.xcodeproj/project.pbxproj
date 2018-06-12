@@ -13,6 +13,7 @@
 		4145D05820A3A9340005F324 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4145D05720A3A9340005F324 /* Meal.swift */; };
 		4145D05A20A3A9F00005F324 /* DropDownDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4145D05920A3A9F00005F324 /* DropDownDelegate.swift */; };
 		415E5BCA20D0610E00063A8B /* AbstractExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415E5BC920D0610E00063A8B /* AbstractExampleViewController.swift */; };
+		415E5BCD20D06C4500063A8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 415E5BCB20D06C4500063A8B /* LaunchScreen.storyboard */; };
 		4178298020B213DC00527B4F /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178297F20B213DC00527B4F /* DropDownCell.swift */; };
 		4178298320B2204400527B4F /* CustomDropDownCellWithNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178298120B2204400527B4F /* CustomDropDownCellWithNib.swift */; };
 		4178298420B2204400527B4F /* CustomDropDownCellWithNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4178298220B2204400527B4F /* CustomDropDownCellWithNib.xib */; };
@@ -26,7 +27,6 @@
 		41CD4CDB2093A7160029800B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD4CDA2093A7160029800B /* ViewController.swift */; };
 		41CD4CDE2093A7160029800B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41CD4CDC2093A7160029800B /* Main.storyboard */; };
 		41CD4CE02093A7180029800B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41CD4CDF2093A7180029800B /* Assets.xcassets */; };
-		41CD4CE32093A7180029800B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41CD4CE12093A7180029800B /* LaunchScreen.storyboard */; };
 		41CD4CEB2093A7290029800B /* DropDownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD4CEA2093A7290029800B /* DropDownMenu.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +37,7 @@
 		4145D05720A3A9340005F324 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		4145D05920A3A9F00005F324 /* DropDownDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownDelegate.swift; sourceTree = "<group>"; };
 		415E5BC920D0610E00063A8B /* AbstractExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractExampleViewController.swift; sourceTree = "<group>"; };
+		415E5BCC20D06C4500063A8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4178297F20B213DC00527B4F /* DropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownCell.swift; sourceTree = "<group>"; };
 		4178298120B2204400527B4F /* CustomDropDownCellWithNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownCellWithNib.swift; sourceTree = "<group>"; };
 		4178298220B2204400527B4F /* CustomDropDownCellWithNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomDropDownCellWithNib.xib; sourceTree = "<group>"; };
@@ -51,7 +52,6 @@
 		41CD4CDA2093A7160029800B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		41CD4CDD2093A7160029800B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		41CD4CDF2093A7180029800B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		41CD4CE22093A7180029800B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41CD4CE42093A7180029800B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41CD4CEA2093A7290029800B /* DropDownMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownMenu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,8 +79,8 @@
 				4110BA6820C44FF400851420 /* CustomDropDownCellWithoutNib.swift */,
 				4178298120B2204400527B4F /* CustomDropDownCellWithNib.swift */,
 				4178298220B2204400527B4F /* CustomDropDownCellWithNib.xib */,
+				415E5BCB20D06C4500063A8B /* LaunchScreen.storyboard */,
 				41CD4CDC2093A7160029800B /* Main.storyboard */,
-				41CD4CE12093A7180029800B /* LaunchScreen.storyboard */,
 				41CD4CDF2093A7180029800B /* Assets.xcassets */,
 				41CD4CE42093A7180029800B /* Info.plist */,
 			);
@@ -178,8 +178,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41CD4CE32093A7180029800B /* LaunchScreen.storyboard in Resources */,
 				41CD4CE02093A7180029800B /* Assets.xcassets in Resources */,
+				415E5BCD20D06C4500063A8B /* LaunchScreen.storyboard in Resources */,
 				41CD4CDE2093A7160029800B /* Main.storyboard in Resources */,
 				4178298420B2204400527B4F /* CustomDropDownCellWithNib.xib in Resources */,
 			);
@@ -215,20 +215,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		415E5BCB20D06C4500063A8B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				415E5BCC20D06C4500063A8B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		41CD4CDC2093A7160029800B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				41CD4CDD2093A7160029800B /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		41CD4CE12093A7180029800B /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				41CD4CE22093A7180029800B /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
