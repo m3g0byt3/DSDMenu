@@ -61,6 +61,7 @@ open class DropDownMenu: UIButton {
         this.layer.shadowOffset = DropDownMenu.shadowOffset
         this.layer.shadowOpacity = DropDownMenu.shadowOpacity
         this.layer.shadowRadius = DropDownMenu.shadowRadius
+        this.addSubview(tableView)
         return this
     }(UIView())
     
@@ -225,7 +226,6 @@ open class DropDownMenu: UIButton {
     
     private func setup() {
         addTarget(self, action: #selector(updateAppearance), for: .touchUpInside)
-        containerView.addSubview(tableView)
         addSubview(containerView)
         addSubview(thumbnailImageView)
         savedTitle = currentTitle ?? savedTitle
@@ -251,15 +251,14 @@ open class DropDownMenu: UIButton {
     
     private func updateViewHierarchy(_ animationState: AnimationState) {
         guard let superview = superview else { return }
-        let topSubviewIndex = superview.subviews.endIndex - 1
-        
+
         switch (animationState, menuState) {
         case (.beforeAnimation, .collapsed):
             // It's safe to force unwrap here because we already have non-nil superview
             savedIndex = superview.subviews.index(of: self)!
             fallthrough
         case (.afterAnimation, .expanded) :
-            superview.exchangeSubview(at: topSubviewIndex, withSubviewAt: savedIndex)
+            superview.exchangeSubview(at: superview.subviews.lastIndex, withSubviewAt: savedIndex)
         default: break
         }
     }

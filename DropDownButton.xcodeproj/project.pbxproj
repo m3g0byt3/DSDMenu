@@ -16,6 +16,7 @@
 		4178298320B2204400527B4F /* CustomDropDownCellWithNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178298120B2204400527B4F /* CustomDropDownCellWithNib.swift */; };
 		4178298420B2204400527B4F /* CustomDropDownCellWithNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4178298220B2204400527B4F /* CustomDropDownCellWithNib.xib */; };
 		417BFA3720CEAB640083CD6F /* Thumbnailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417BFA3620CEAB640083CD6F /* Thumbnailable.swift */; };
+		41805E9620CEEEC100E2D9E6 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41805E9520CEEEC100E2D9E6 /* Array+Extensions.swift */; };
 		418AF37020CC37410020F091 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418AF36F20CC37410020F091 /* UIView+Extensions.swift */; };
 		419B8F3020CAB9C7008C4289 /* DropDownState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419B8F2F20CAB9C7008C4289 /* DropDownState.swift */; };
 		41CD4CD92093A7160029800B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD4CD82093A7160029800B /* AppDelegate.swift */; };
@@ -36,6 +37,7 @@
 		4178298120B2204400527B4F /* CustomDropDownCellWithNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownCellWithNib.swift; sourceTree = "<group>"; };
 		4178298220B2204400527B4F /* CustomDropDownCellWithNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomDropDownCellWithNib.xib; sourceTree = "<group>"; };
 		417BFA3620CEAB640083CD6F /* Thumbnailable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnailable.swift; sourceTree = "<group>"; };
+		41805E9520CEEEC100E2D9E6 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		418AF36F20CC37410020F091 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		419B8F2F20CAB9C7008C4289 /* DropDownState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownState.swift; sourceTree = "<group>"; };
 		41CD4CD52093A7160029800B /* DropDownButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DropDownButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +104,7 @@
 				417BFA3620CEAB640083CD6F /* Thumbnailable.swift */,
 				4110BA6B20C450DF00851420 /* UITableView+Extensions.swift */,
 				418AF36F20CC37410020F091 /* UIView+Extensions.swift */,
+				41805E9520CEEEC100E2D9E6 /* Array+Extensions.swift */,
 				4132072E20CEDA9900B1FC77 /* DropDownMenu+Extensions.swift */,
 				41B80F4D20C4780600A62459 /* Example */,
 			);
@@ -183,6 +186,7 @@
 				419B8F3020CAB9C7008C4289 /* DropDownState.swift in Sources */,
 				4110BA6C20C450DF00851420 /* UITableView+Extensions.swift in Sources */,
 				417BFA3720CEAB640083CD6F /* Thumbnailable.swift in Sources */,
+				41805E9620CEEEC100E2D9E6 /* Array+Extensions.swift in Sources */,
 				4145D05820A3A9340005F324 /* Meal.swift in Sources */,
 				41CD4CEB2093A7290029800B /* DropDownMenu.swift in Sources */,
 				4110BA6920C44FF400851420 /* CustomDropDownCellWithoutNib.swift in Sources */,
