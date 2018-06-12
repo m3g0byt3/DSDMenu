@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="STd-Nl-yOJ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,26 +10,26 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Remove me!-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="DropDownButton" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="DropDownButton" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="tzm-Yk-ptt">
-                                <rect key="frame" x="94" y="220" width="187.5" height="227"/>
+                                <rect key="frame" x="94" y="214" width="187.5" height="239"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FkZ-ib-lgE" customClass="DropDownMenu" customModule="DropDownButton" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="37.5"/>
                                         <color key="backgroundColor" red="0.25882352939999997" green="0.83529411760000005" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Drop Down with NIB">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wrx-sP-MmP">
-                                        <rect key="frame" x="0.0" y="64.5" width="187.5" height="34"/>
+                                        <rect key="frame" x="0.0" y="67.5" width="187.5" height="37"/>
                                         <color key="backgroundColor" red="0.27237486840000003" green="0.23386213180000001" blue="0.80089795590000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Clear selection">
                                             <color key="titleColor" red="0.25882352939999997" green="0.83529411760000005" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -39,14 +39,14 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lpv-43-kIh" customClass="DropDownMenu" customModule="DropDownButton" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="128.5" width="187.5" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="134.5" width="187.5" height="37.5"/>
                                         <color key="backgroundColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Drop Down without NIB">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BJR-kc-mA7">
-                                        <rect key="frame" x="0.0" y="193" width="187.5" height="34"/>
+                                        <rect key="frame" x="0.0" y="202" width="187.5" height="37"/>
                                         <color key="backgroundColor" red="0.99517929549999995" green="0.76438117029999997" blue="0.0368270427" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
@@ -56,11 +56,12 @@
                         <constraints>
                             <constraint firstItem="tzm-Yk-ptt" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="4Kf-gp-4U0"/>
                             <constraint firstItem="tzm-Yk-ptt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7QQ-ek-Smx"/>
-                            <constraint firstItem="tzm-Yk-ptt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="200" id="aJe-7i-Jk0"/>
+                            <constraint firstItem="tzm-Yk-ptt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="150" id="aJe-7i-Jk0"/>
                             <constraint firstItem="tzm-Yk-ptt" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="ehm-NK-TET"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Remove me!" id="hcy-ZT-gSB"/>
                     <connections>
                         <outlet property="dropDownWithNib" destination="FkZ-ib-lgE" id="KfF-ez-4Ru"/>
                         <outlet property="dropDownWithoutNib" destination="lpv-43-kIh" id="VmF-SO-EYG"/>
@@ -68,7 +69,181 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="141.59999999999999" y="133.5832083958021"/>
+            <point key="canvasLocation" x="911.20000000000005" y="-204.64767616191907"/>
+        </scene>
+        <!--OldViewController-->
+        <scene sceneID="Pom-YB-sDr">
+            <objects>
+                <viewController storyboardIdentifier="OldViewController" id="4EE-rb-Go7" userLabel="OldViewController" customClass="OldViewController" customModule="DropDownButton" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="orl-dU-hL7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dvs-9g-u2D">
+                                <rect key="frame" x="94" y="131" width="187.5" height="187.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="dvs-9g-u2D" secondAttribute="height" multiplier="1:1" id="1sB-gx-GtN"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kZO-Ma-Gzk" customClass="DropDownMenu" customModule="DropDownButton" customModuleProvider="target">
+                                <rect key="frame" x="94" y="318.5" width="187.5" height="30"/>
+                                <state key="normal" title="Tap to select"/>
+                                <connections>
+                                    <outlet property="delegate" destination="4EE-rb-Go7" id="7nQ-7X-ZDv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kZO-Ma-Gzk" firstAttribute="centerY" secondItem="orl-dU-hL7" secondAttribute="centerY" id="3iK-Kw-lQa"/>
+                            <constraint firstItem="dvs-9g-u2D" firstAttribute="centerX" secondItem="orl-dU-hL7" secondAttribute="centerX" id="5Dx-is-1kG"/>
+                            <constraint firstItem="dvs-9g-u2D" firstAttribute="bottom" secondItem="kZO-Ma-Gzk" secondAttribute="top" id="ECM-aJ-KdZ"/>
+                            <constraint firstItem="kZO-Ma-Gzk" firstAttribute="width" secondItem="orl-dU-hL7" secondAttribute="width" multiplier="0.5" id="RL2-de-IPm"/>
+                            <constraint firstItem="kZO-Ma-Gzk" firstAttribute="centerX" secondItem="orl-dU-hL7" secondAttribute="centerX" id="eaL-AP-qZy"/>
+                            <constraint firstItem="dvs-9g-u2D" firstAttribute="width" secondItem="kZO-Ma-Gzk" secondAttribute="width" id="fA4-gJ-vjX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6u5-OW-5bh"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2Xx-Oi-zeT">
+                        <barButtonItem key="rightBarButtonItem" title="Clear" id="uE2-92-bt2">
+                            <connections>
+                                <action selector="clear:" destination="4EE-rb-Go7" id="E3o-vb-WxP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="imageView" destination="dvs-9g-u2D" id="6t9-WW-K2y"/>
+                        <outlet property="menu" destination="kZO-Ma-Gzk" id="Qe8-N7-vQc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HSz-xT-nGL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2591" y="168"/>
+        </scene>
+        <!--NewViewController-->
+        <scene sceneID="mY7-Nt-yWG">
+            <objects>
+                <viewController storyboardIdentifier="NewViewController" id="f7J-hP-iH6" userLabel="NewViewController" customClass="NewViewController" customModule="DropDownButton" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9jS-kO-r1b">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n89-rJ-2gu" customClass="DropDownMenu" customModule="DropDownButton" customModuleProvider="target">
+                                <rect key="frame" x="94" y="318.5" width="187.5" height="30"/>
+                                <state key="normal" title="Tap to select"/>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R4w-a8-Dys">
+                                <rect key="frame" x="94" y="131" width="187.5" height="187.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="R4w-a8-Dys" secondAttribute="height" multiplier="1:1" id="RGA-ZB-bm0"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="n89-rJ-2gu" firstAttribute="centerX" secondItem="9jS-kO-r1b" secondAttribute="centerX" id="5Zw-3z-Rop"/>
+                            <constraint firstItem="R4w-a8-Dys" firstAttribute="centerX" secondItem="9jS-kO-r1b" secondAttribute="centerX" id="6MO-fw-Pls"/>
+                            <constraint firstItem="n89-rJ-2gu" firstAttribute="top" secondItem="R4w-a8-Dys" secondAttribute="bottom" id="Q0J-Jb-CU2"/>
+                            <constraint firstItem="R4w-a8-Dys" firstAttribute="width" secondItem="n89-rJ-2gu" secondAttribute="width" id="VFo-hf-czQ"/>
+                            <constraint firstItem="n89-rJ-2gu" firstAttribute="centerY" secondItem="9jS-kO-r1b" secondAttribute="centerY" id="cDK-wr-1xM"/>
+                            <constraint firstItem="n89-rJ-2gu" firstAttribute="width" secondItem="9jS-kO-r1b" secondAttribute="width" multiplier="0.5" id="fCM-fR-zsv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kwj-KG-Ssc"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="CAe-dt-6yf">
+                        <barButtonItem key="rightBarButtonItem" title="Clear" id="idZ-Xx-ARs">
+                            <connections>
+                                <action selector="clear:" destination="f7J-hP-iH6" id="eSz-6E-93K"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="imageView" destination="R4w-a8-Dys" id="ny0-W4-xqL"/>
+                        <outlet property="menu" destination="n89-rJ-2gu" id="IQg-fC-qAE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="guf-Sf-LKl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="911.20000000000005" y="617.54122938530736"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="ywH-XW-B2I">
+            <objects>
+                <tabBarController id="STd-Nl-yOJ" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eQG-UT-Y2w">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="xK2-I4-ckd" kind="relationship" relationship="viewControllers" id="T2l-zM-6qe"/>
+                        <segue destination="ASn-X5-fhe" kind="relationship" relationship="viewControllers" id="Ywm-ia-71b"/>
+                        <segue destination="fKl-sK-GHk" kind="relationship" relationship="viewControllers" id="OnS-ZN-JPQ"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hUO-HF-1XN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1375" y="168"/>
+        </scene>
+        <!--New Way-->
+        <scene sceneID="dxm-Ol-nZK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ASn-X5-fhe" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="New Way" image="circle" id="1xn-z9-UKc"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NUg-SQ-Rt7">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="f7J-hP-iH6" kind="relationship" relationship="rootViewController" id="hnF-q0-YbV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oSj-ch-oqd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-28" y="617.54122938530736"/>
+        </scene>
+        <!--Old Way-->
+        <scene sceneID="hxY-vj-Gre">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xK2-I4-ckd" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Old Way" image="circle" id="jN0-f7-wSU"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="93n-gn-ohN">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4EE-rb-Go7" kind="relationship" relationship="rootViewController" id="fIU-2E-Nm1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lrm-I3-TVI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1758" y="168"/>
+        </scene>
+        <!--Temp-->
+        <scene sceneID="5wx-SX-aOB">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fKl-sK-GHk" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Temp" image="circle" id="L6k-Vy-K5h"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SU0-Dv-pZo">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="peL-QB-j4n"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z61-Zd-0cq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-28" y="-204.64767616191907"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="circle" width="25" height="25"/>
+    </resources>
 </document>

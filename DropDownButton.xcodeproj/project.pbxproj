@@ -12,12 +12,15 @@
 		4132072F20CEDA9900B1FC77 /* DropDownMenu+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4132072E20CEDA9900B1FC77 /* DropDownMenu+Extensions.swift */; };
 		4145D05820A3A9340005F324 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4145D05720A3A9340005F324 /* Meal.swift */; };
 		4145D05A20A3A9F00005F324 /* DropDownDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4145D05920A3A9F00005F324 /* DropDownDelegate.swift */; };
+		415E5BCA20D0610E00063A8B /* AbstractExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415E5BC920D0610E00063A8B /* AbstractExampleViewController.swift */; };
 		4178298020B213DC00527B4F /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178297F20B213DC00527B4F /* DropDownCell.swift */; };
 		4178298320B2204400527B4F /* CustomDropDownCellWithNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178298120B2204400527B4F /* CustomDropDownCellWithNib.swift */; };
 		4178298420B2204400527B4F /* CustomDropDownCellWithNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4178298220B2204400527B4F /* CustomDropDownCellWithNib.xib */; };
 		417BFA3720CEAB640083CD6F /* Thumbnailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417BFA3620CEAB640083CD6F /* Thumbnailable.swift */; };
 		41805E9620CEEEC100E2D9E6 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41805E9520CEEEC100E2D9E6 /* Array+Extensions.swift */; };
 		418AF37020CC37410020F091 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418AF36F20CC37410020F091 /* UIView+Extensions.swift */; };
+		418BC47B20CFF9A200DF7C93 /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418BC47A20CFF9A200DF7C93 /* NewViewController.swift */; };
+		418BC47D20D0058200DF7C93 /* OldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418BC47C20D0058200DF7C93 /* OldViewController.swift */; };
 		419B8F3020CAB9C7008C4289 /* DropDownState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419B8F2F20CAB9C7008C4289 /* DropDownState.swift */; };
 		41CD4CD92093A7160029800B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD4CD82093A7160029800B /* AppDelegate.swift */; };
 		41CD4CDB2093A7160029800B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD4CDA2093A7160029800B /* ViewController.swift */; };
@@ -33,12 +36,15 @@
 		4132072E20CEDA9900B1FC77 /* DropDownMenu+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DropDownMenu+Extensions.swift"; sourceTree = "<group>"; };
 		4145D05720A3A9340005F324 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		4145D05920A3A9F00005F324 /* DropDownDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownDelegate.swift; sourceTree = "<group>"; };
+		415E5BC920D0610E00063A8B /* AbstractExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractExampleViewController.swift; sourceTree = "<group>"; };
 		4178297F20B213DC00527B4F /* DropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownCell.swift; sourceTree = "<group>"; };
 		4178298120B2204400527B4F /* CustomDropDownCellWithNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownCellWithNib.swift; sourceTree = "<group>"; };
 		4178298220B2204400527B4F /* CustomDropDownCellWithNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomDropDownCellWithNib.xib; sourceTree = "<group>"; };
 		417BFA3620CEAB640083CD6F /* Thumbnailable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnailable.swift; sourceTree = "<group>"; };
 		41805E9520CEEEC100E2D9E6 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		418AF36F20CC37410020F091 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		418BC47A20CFF9A200DF7C93 /* NewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
+		418BC47C20D0058200DF7C93 /* OldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldViewController.swift; sourceTree = "<group>"; };
 		419B8F2F20CAB9C7008C4289 /* DropDownState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownState.swift; sourceTree = "<group>"; };
 		41CD4CD52093A7160029800B /* DropDownButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DropDownButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41CD4CD82093A7160029800B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +72,9 @@
 			children = (
 				41CD4CD82093A7160029800B /* AppDelegate.swift */,
 				41CD4CDA2093A7160029800B /* ViewController.swift */,
+				415E5BC920D0610E00063A8B /* AbstractExampleViewController.swift */,
+				418BC47C20D0058200DF7C93 /* OldViewController.swift */,
+				418BC47A20CFF9A200DF7C93 /* NewViewController.swift */,
 				4145D05720A3A9340005F324 /* Meal.swift */,
 				4110BA6820C44FF400851420 /* CustomDropDownCellWithoutNib.swift */,
 				4178298120B2204400527B4F /* CustomDropDownCellWithNib.swift */,
@@ -183,8 +192,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				418BC47D20D0058200DF7C93 /* OldViewController.swift in Sources */,
 				419B8F3020CAB9C7008C4289 /* DropDownState.swift in Sources */,
 				4110BA6C20C450DF00851420 /* UITableView+Extensions.swift in Sources */,
+				415E5BCA20D0610E00063A8B /* AbstractExampleViewController.swift in Sources */,
 				417BFA3720CEAB640083CD6F /* Thumbnailable.swift in Sources */,
 				41805E9620CEEEC100E2D9E6 /* Array+Extensions.swift in Sources */,
 				4145D05820A3A9340005F324 /* Meal.swift in Sources */,
@@ -195,6 +206,7 @@
 				41CD4CDB2093A7160029800B /* ViewController.swift in Sources */,
 				4132072F20CEDA9900B1FC77 /* DropDownMenu+Extensions.swift in Sources */,
 				41CD4CD92093A7160029800B /* AppDelegate.swift in Sources */,
+				418BC47B20CFF9A200DF7C93 /* NewViewController.swift in Sources */,
 				4145D05A20A3A9F00005F324 /* DropDownDelegate.swift in Sources */,
 				418AF37020CC37410020F091 /* UIView+Extensions.swift in Sources */,
 			);
