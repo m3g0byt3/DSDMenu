@@ -26,31 +26,32 @@ open class DropDownMenu: UIButton {
     private static let animationDuration: TimeInterval = 0.3
     private static let heightConstraintMultiplier: CGFloat = 1.0
     private static let cellIdentifier = "DropDownCell"
-    
-    // MARK: - IBOutlets
-    
+
+    // MARK: - Public Properties
+    // Little hacky, but allows to connect non-objc `delegate` property in the Interface Builder
+    #if TARGET_INTERFACE_BUILDER
+    @IBOutlet private weak var delegate: AnyObject?
+    #else
     public weak var delegate: DropDownDelegate? {
         didSet {
             updateCellClass()
         }
     }
-    
-    // MARK: - Public Properties
-    
-    open var menuState: DropDownState = .collapsed
+    #endif
+
+    public var menuState: DropDownState = .collapsed
 
     // MARK: - Private Properties
 
     private let collapsedHeight: CGFloat = 0
     
-    private var expandedHeight: CGFloat {
-        let rows = delegate?.numberOfItems(in: self) ?? 0
-        return bounds.height * CGFloat(rows)
-    }
+    private var expandedHeight: CGFloat { return bounds.height * CGFloat(numberOfItems) }
     
     private var savedIndex = 0
 
     private var savedTitle = ""
+
+    private var configurationCLosure: ((DropDownMenu) -> Void)?
     
     private weak var heightConstraint: NSLayoutConstraint?
     
@@ -76,6 +77,37 @@ open class DropDownMenu: UIButton {
     }(UIImageView())
     
     // MARK: - Inits
+
+    // MARK: - Delegate/closure getters
+
+    private var numberOfItems: Int {
+        return delegate?.numberOfItems(in: self) ?? _numberOfItems
+    }
+
+    private var cellClass: DropDownCell.Type {
+        return delegate?.cellClass(for: self) ?? _cellClass
+    }
+
+    private var updateThumbnailOnSelection: Bool {
+        return delegate?.updateThumbnailOnSelection(in: self) ?? _updateThumbnailOnSelection
+    }
+
+    private var didSelectItem: (_ menu: DropDownMenu, _ index: Int) -> Void {
+        return delegate?.dropDownMenu ?? { [weak self] (_, index) in self?._didSelectItem?(index) }
+    }
+
+    private var willDisplayCell: (_ menu: DropDownMenu, _ cell: DropDownCell, _ index: Int) -> Void {
+        return delegate?.dropDownMenu ?? { [weak self] (_, cell, index) in self?._willDisplayCell?(cell, index) }
+    }
+
+    // MARK: - Ivars for getters
+    // Have `internal` access modified because they should be available in extension
+    var _numberOfItems = 0
+    var _cellClass = DropDownCell.self
+    var _updateThumbnailOnSelection = false
+    var _didSelectItem: ((_ index: Int) -> Void)?
+    var _willDisplayCell: ((_ cell: DropDownCell, _ index: Int) -> Void)?
+
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -108,7 +140,16 @@ open class DropDownMenu: UIButton {
         
         return super.hitTest(point, with: event)
     }
-    
+
+    // Little hacky, but allows to connect non-objc `delegate` property in the Interface Builder
+    override open func setValue(_ value: Any?, forUndefinedKey key: String) {
+        if key == "delegate" {
+            delegate = value as? DropDownDelegate
+        } else {
+            super.setValue(value, forUndefinedKey: key)
+        }
+    }
+
     override open func layoutSubviews() {
         super.layoutSubviews()
         // Set `separatorStyle = .none` at every subviews layout due to bug https://openradar.appspot.com/21940268
@@ -123,6 +164,17 @@ open class DropDownMenu: UIButton {
     open func clearThumbnail() {
         thumbnailImageView.image = nil
         setTitle(savedTitle, for: .normal)
+    }
+
+    open func reload() {
+        configurationCLosure?(self)
+        updateCellClass()
+        tableView.reloadData()
+    }
+
+    open func configure(using closure: @escaping (DropDownMenu) -> Void) {
+        configurationCLosure = closure
+        reload()
     }
     
     // MARK: - Private API
@@ -198,7 +250,7 @@ open class DropDownMenu: UIButton {
     }
 
     private func updateCellClass() {
-        let wrapper = CellClassWrapper(cellClass: delegate?.cellClass(for: self))
+        let wrapper = CellClassWrapper(cellClass: cellClass)
         tableView.register(wrapper, forCellReuseIdentifier: DropDownMenu.cellIdentifier)
     }
 
@@ -220,7 +272,7 @@ open class DropDownMenu: UIButton {
 extension DropDownMenu: UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return delegate?.numberOfItems(in: self) ?? 0
+        return numberOfItems
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -234,9 +286,9 @@ extension DropDownMenu: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        delegate?.dropDownMenu(self, didSelectItemAt: indexPath.row)
-        
-        if let delegate = delegate, delegate.updateThumbnailOnSelection(in: self) {
+        didSelectItem(self, indexPath.row)
+
+        if updateThumbnailOnSelection {
             updateThumbnailUsingCellAt(indexPath)
         }
 
@@ -244,7 +296,8 @@ extension DropDownMenu: UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        // It's safe to force unwrap here because we already returned a `DropDownCell` instance in `cellForRow(at:)`
-        delegate?.dropDownMenu(self, willDisplay: cell as! DropDownCell, forRowAt: indexPath.row)
+        if let cell = cell as? DropDownCell {
+            willDisplayCell(self, cell, indexPath.row)
+        }
     }
 }
