@@ -37,7 +37,7 @@ open class DropDownMenu: UIButton {
     
     // MARK: - Public Properties
     
-    open var menuState: DropDownState = .collapsed
+    public var menuState: DropDownState = .collapsed
 
     // MARK: - Private Properties
 
