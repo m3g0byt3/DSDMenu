@@ -8,10 +8,12 @@
 
 import Foundation
 
+/// State of `DropDownMenu` instance, currently supported states are `.collapsed` and `.expanded`.
 public enum DropDownState {
     
     case collapsed, expanded
-    
+
+    /// Change menu's state (`.collapsed` to `.expanded` and vice versa).
     mutating func toggle() {
         switch self {
         case .collapsed: self = .expanded

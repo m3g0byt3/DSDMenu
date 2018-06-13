@@ -10,6 +10,7 @@ import Foundation
 
 extension Array {
 
+    /// The last valid subscript argument in the array. Returns `0` if array is empty.
     var lastIndex: Int {
         return count > 0 ? endIndex - 1 : 0
     }

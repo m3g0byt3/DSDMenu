@@ -8,12 +8,15 @@
 
 import UIKit
 
+/// Helper struct, used to register `UINib` instance (if available) from given class or this class itself.
 struct CellClassWrapper {
 
     private static let nibType = "nib"
-    let cellClass: AnyClass?
 
-    var nib: UINib? {
+    /// Wrapped class
+    let cellClass: AnyClass?
+    
+    fileprivate var nib: UINib? {
         return cellClass
             .map( String.init(describing:) )
             .flatMap { Bundle.main.path(forResource: $0, ofType: CellClassWrapper.nibType) }
@@ -25,6 +28,13 @@ struct CellClassWrapper {
 
 extension UITableView {
 
+    /**
+     Register `UINib` instance (if available) provided by the class,
+     wrapped in the `CellClassWrapper` instance or this class itself.
+     - parameters:
+        - wrapper: a `CellClassWrapper` instance
+        - identifier: `UITableView` reuse identifier
+     */
     func register(_ wrapper: CellClassWrapper, forCellReuseIdentifier identifier: String) {
 
         if let nib = wrapper.nib {

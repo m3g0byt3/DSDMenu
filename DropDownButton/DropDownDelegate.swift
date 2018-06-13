@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Objects that conforms to this protocol - acts as delegate and datasource for `DropDownMenu`.
 public protocol DropDownDelegate: class {
 
     /**

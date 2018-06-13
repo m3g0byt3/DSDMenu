@@ -8,8 +8,10 @@
 
 import UIKit
 
+/// Objects that conforms to this protocol - must provide thumbnail (a `UIVIew` instance).
 protocol Thumbnailable {
 
+    /// Thumbnail (a `UIVIew` instance).
     var thumbnailView: UIView { get }
 }
 

@@ -8,4 +8,5 @@
 
 import UIKit
 
+/// Subclass this class to define our own custom menu's cell.
 open class DropDownCell: UITableViewCell, Thumbnailable {}
