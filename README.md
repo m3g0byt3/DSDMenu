@@ -47,12 +47,14 @@ That's it!
 
 ### TODO
 ---
-- [ ] Configure using closure instead of delegate
-- [ ] Auto-update view based on selected cell's content, even with orientation changes
+- [x] Configure using closure instead of delegate
+- [x] Auto-update view based on selected cell's content
+- [x] Setup constraints in `updateConstraints()` ([see also])
+- [ ] Setup Pod
+- [ ] Complete README
+- [ ] Correct handling of orientation changes
 - [ ] Use POP for cells instead of subclassing (if possible?)
-- [ ] Allow to customize shadow parameters
-- [ ] Setup constraints in `updateConstraints()` ([see also])
-
+- [ ] Allow to customize appearance (shadows, colors, etc)
 
 
 ### Author
