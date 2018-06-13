@@ -280,7 +280,7 @@ open class DropDownMenu: UIButton {
             // It's safe to force unwrap here because we already have non-nil superview
             savedIndex = superview.subviews.index(of: self)!
             fallthrough
-        case (.afterAnimation, .expanded) :
+        case (.afterAnimation, .expanded):
             superview.exchangeSubview(at: superview.subviews.lastIndex, withSubviewAt: savedIndex)
         default: break
         }
