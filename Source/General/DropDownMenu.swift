@@ -26,6 +26,7 @@ open class DropDownMenu: UIButton {
     private static let animationDuration: TimeInterval = 0.3
     private static let heightConstraintMultiplier: CGFloat = 1.0
     private static let cellIdentifier = "DropDownCell"
+    private static let delegatePropertyName = "delegate"
 
     // MARK: - Public Properties
 
@@ -55,7 +56,7 @@ open class DropDownMenu: UIButton {
 
     private var savedTitle = ""
 
-    private var configurationCLosure: ((DropDownMenu) -> Void)?
+    private var configurationCLosure: ((DropDownMenuConfigurator) -> Void)?
     
     private weak var heightConstraint: NSLayoutConstraint?
     
@@ -83,7 +84,6 @@ open class DropDownMenu: UIButton {
 
     /// - warning: ⚠️ Dispatched once ⚠️
     private lazy var setupConstraints: () -> Void = { [weak self] in
-        translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         containerView.translatesAutoresizingMaskIntoConstraints = false
         thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -144,15 +144,12 @@ open class DropDownMenu: UIButton {
     var _willDisplayCell: ((_ cell: DropDownCell, _ index: Int) -> Void)?
 
     // MARK: - Initialization
-    
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-    
-    public required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
+
+    public convenience init(title: String, frame: CGRect = CGRect.zero) {
+        self.init(type: .system)
+        self.frame = frame
+        self.setTitle(title, for: .normal)
+        self.setup()
     }
     
     // MARK: - Necessary Overriding
@@ -179,11 +176,16 @@ open class DropDownMenu: UIButton {
 
     // Little hacky, but allows to connect non-objc `delegate` property in the Interface Builder.
     override open func setValue(_ value: Any?, forUndefinedKey key: String) {
-        if key == "delegate" {
+        if key == DropDownMenu.delegatePropertyName {
             delegate = value as? DropDownDelegate
         } else {
             super.setValue(value, forUndefinedKey: key)
         }
+    }
+
+    // Perform internal setup when initialized in the Interface Builder
+    override open func awakeFromNib() {
+        setup()
     }
 
     // Update various non-AL UIs.
@@ -220,7 +222,8 @@ open class DropDownMenu: UIButton {
 
     /// Reload a `DropDownMenu` instance.
     open func reload() {
-        configurationCLosure?(self)
+        let configurator = DropDownMenuConfigurator(wrapped: self)
+        configurationCLosure?(configurator)
         updateCellClass()
         tableView.reloadData()
     }
@@ -230,17 +233,17 @@ open class DropDownMenu: UIButton {
 
      Example of configuration closure:
      ```
-     menu.configure { menu in
-        menu.cellClass(DropDownCell.self)
-            .numberOfItems(10)
-            .updateThumbnailOnSelection(true)
-            .didSelectItem { index in print(index) }
-            .willDisplayCell { (cell, index) in print(cell, index) }
+     menu.configure { configurator in
+        configurator.cellClass(DropDownCell.self)
+                    .numberOfItems(10)
+                    .updateThumbnailOnSelection(true)
+                    .didSelectItem { index in print(index) }
+                    .willDisplayCell { (cell, index) in print(cell, index) }
      }
      ```
      - parameter closure: Configuration closure that will be used instead of delegate.
      */
-    open func configure(using closure: @escaping (DropDownMenu) -> Void) {
+    open func configure(using closure: @escaping (DropDownMenuConfigurator) -> Void) {
         configurationCLosure = closure
         reload()
     }
