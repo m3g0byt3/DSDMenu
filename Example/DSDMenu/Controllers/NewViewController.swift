@@ -36,21 +36,21 @@ final class NewViewController: AbstractExampleViewController {
     // MARK: - Private API
 
     private func setupMenu() {
-        menu.configure { [unowned self] menu in
-            menu.cellClass(CustomDropDownCellWithoutNib.self)
-                .numberOfItems(self.meals.count)
-                .updateThumbnailOnSelection(false)
-                .didSelectItem { index in
-                    let meal = self.meals[index]
-                    self.navigationItem.title = meal.name
-                    self.imageView.image = meal.image
-                }
-                .willDisplayCell { (cell, index) in
-                    let meal = self.meals[index]
-                    if let cell = cell as? CustomDropDownCellWithoutNib {
-                        cell.configureUsing(meal)
-                    }
-                }
+        menu.configure { [unowned self] configurator in
+            configurator.cellClass(CustomDropDownCellWithoutNib.self)
+                        .numberOfItems(self.meals.count)
+                        .updateThumbnailOnSelection(false)
+                        .didSelectItem { index in
+                            let meal = self.meals[index]
+                            self.navigationItem.title = meal.name
+                            self.imageView.image = meal.image
+                        }
+                        .willDisplayCell { (cell, index) in
+                            let meal = self.meals[index]
+                            if let cell = cell as? CustomDropDownCellWithoutNib {
+                                cell.configureUsing(meal)
+                            }
+                        }
         }
     }
 }

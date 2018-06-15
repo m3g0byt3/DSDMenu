@@ -56,7 +56,7 @@ open class DropDownMenu: UIButton {
 
     private var savedTitle = ""
 
-    private var configurationCLosure: ((DropDownMenu) -> Void)?
+    private var configurationCLosure: ((DropDownMenuConfigurator) -> Void)?
     
     private weak var heightConstraint: NSLayoutConstraint?
     
@@ -222,7 +222,8 @@ open class DropDownMenu: UIButton {
 
     /// Reload a `DropDownMenu` instance.
     open func reload() {
-        configurationCLosure?(self)
+        let configurator = DropDownMenuConfigurator(wrapped: self)
+        configurationCLosure?(configurator)
         updateCellClass()
         tableView.reloadData()
     }
@@ -232,17 +233,17 @@ open class DropDownMenu: UIButton {
 
      Example of configuration closure:
      ```
-     menu.configure { menu in
-        menu.cellClass(DropDownCell.self)
-            .numberOfItems(10)
-            .updateThumbnailOnSelection(true)
-            .didSelectItem { index in print(index) }
-            .willDisplayCell { (cell, index) in print(cell, index) }
+     menu.configure { configurator in
+        configurator.cellClass(DropDownCell.self)
+                    .numberOfItems(10)
+                    .updateThumbnailOnSelection(true)
+                    .didSelectItem { index in print(index) }
+                    .willDisplayCell { (cell, index) in print(cell, index) }
      }
      ```
      - parameter closure: Configuration closure that will be used instead of delegate.
      */
-    open func configure(using closure: @escaping (DropDownMenu) -> Void) {
+    open func configure(using closure: @escaping (DropDownMenuConfigurator) -> Void) {
         configurationCLosure = closure
         reload()
     }
