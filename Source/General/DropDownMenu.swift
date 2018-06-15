@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// A simple drop-down menu written in Swift.
 open class DropDownMenu: UIButton {
     
     // MARK: - Types (internal usage only)
@@ -151,7 +152,7 @@ open class DropDownMenu: UIButton {
         self.setTitle(title, for: .normal)
         self.setup()
     }
-    
+
     // MARK: - Necessary Overriding
     
     // See https://developer.apple.com/library/content/qa/qa2013/qa1812.html for details.
@@ -214,7 +215,7 @@ open class DropDownMenu: UIButton {
 
     // MARK: - Public API
 
-    /// Clears menu auto-updated thumbnail (if delegate allows auto-update) and sets back latest `title` value.
+    /// Clears menu auto-generated thumbnail (if delegate allows auto-update) and sets back latest `title` value.
     open func clearThumbnail() {
         thumbnailImageView.image = nil
         setTitle(savedTitle, for: .normal)
