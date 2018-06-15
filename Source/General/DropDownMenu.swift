@@ -84,7 +84,6 @@ open class DropDownMenu: UIButton {
 
     /// - warning: ⚠️ Dispatched once ⚠️
     private lazy var setupConstraints: () -> Void = { [weak self] in
-        translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         containerView.translatesAutoresizingMaskIntoConstraints = false
         thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -145,15 +144,12 @@ open class DropDownMenu: UIButton {
     var _willDisplayCell: ((_ cell: DropDownCell, _ index: Int) -> Void)?
 
     // MARK: - Initialization
-    
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-    
-    public required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
+
+    public convenience init(title: String, frame: CGRect = CGRect.zero) {
+        self.init(type: .system)
+        self.frame = frame
+        self.setTitle(title, for: .normal)
+        self.setup()
     }
     
     // MARK: - Necessary Overriding
@@ -185,6 +181,11 @@ open class DropDownMenu: UIButton {
         } else {
             super.setValue(value, forUndefinedKey: key)
         }
+    }
+
+    // Perform internal setup when initialized in the Interface Builder
+    override open func awakeFromNib() {
+        setup()
     }
 
     // Update various non-AL UIs.
