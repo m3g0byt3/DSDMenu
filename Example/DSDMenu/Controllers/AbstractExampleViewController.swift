@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DSDMenu
 
 class AbstractExampleViewController: UIViewController {
 

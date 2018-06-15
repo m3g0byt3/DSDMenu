@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import DSDMenu
 
-final class ViewController: UIViewController {
+final class TempViewController: UIViewController {
     
     // MARK: - IBOutlets
     
@@ -54,7 +55,7 @@ final class ViewController: UIViewController {
 
 // MARK: - DropDownDelegate protocol conformance
 
-extension ViewController: DropDownDelegate {
+extension TempViewController: DropDownDelegate {
     
     func cellClass(for dropDownMenu: DropDownMenu) -> DropDownCell.Type {
         

@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'DSDMenu_Example' do
+  pod 'DSDMenu', :path => '../'
+
+  target 'DSDMenu_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

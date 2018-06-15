@@ -57,7 +57,7 @@ public protocol DropDownDelegate: class {
     func updateThumbnailOnSelection(in dropDownMenu: DropDownMenu) -> Bool
 }
 
-extension DropDownDelegate {
+public extension DropDownDelegate {
 
     // Default implementation for `cellClass(for:)`, returns `DropDownCell.self`.
     func cellClass(for dropDownMenu: DropDownMenu) -> DropDownCell.Type { return DropDownCell.self }
