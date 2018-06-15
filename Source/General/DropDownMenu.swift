@@ -26,6 +26,7 @@ open class DropDownMenu: UIButton {
     private static let animationDuration: TimeInterval = 0.3
     private static let heightConstraintMultiplier: CGFloat = 1.0
     private static let cellIdentifier = "DropDownCell"
+    private static let delegatePropertyName = "delegate"
 
     // MARK: - Public Properties
 
@@ -179,7 +180,7 @@ open class DropDownMenu: UIButton {
 
     // Little hacky, but allows to connect non-objc `delegate` property in the Interface Builder.
     override open func setValue(_ value: Any?, forUndefinedKey key: String) {
-        if key == "delegate" {
+        if key == DropDownMenu.delegatePropertyName {
             delegate = value as? DropDownDelegate
         } else {
             super.setValue(value, forUndefinedKey: key)
