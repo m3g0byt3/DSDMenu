@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.author                  = { 'm3g0byt3' => 'm3g0byt3@gmail.com' }
   s.source                  = { :git => 'https://github.com/m3g0byt3/DSDMenu.git', :tag => s.version.to_s }
   s.platform                = :ios
-  s.ios.deployment_target   = '9.3'
+  s.ios.deployment_target   = '9.0'
   s.swift_version           = '4.0'
   s.source_files            = 'Source/**/*'
   s.frameworks              = 'UIKit'
