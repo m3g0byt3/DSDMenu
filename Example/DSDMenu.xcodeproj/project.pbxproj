@@ -15,10 +15,9 @@
 		41DF133620D17EAA008D56CB /* CustomDropDownCellWithNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41DF132D20D17EA9008D56CB /* CustomDropDownCellWithNib.xib */; };
 		41DF133720D17EAA008D56CB /* CustomDropDownCellWithoutNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DF132E20D17EA9008D56CB /* CustomDropDownCellWithoutNib.swift */; };
 		41DF133820D17EAA008D56CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41DF132F20D17EAA008D56CB /* Assets.xcassets */; };
-		41DF133920D17EAA008D56CB /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DF133020D17EAA008D56CB /* NewViewController.swift */; };
-		41DF133A20D17EAA008D56CB /* OldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DF133120D17EAA008D56CB /* OldViewController.swift */; };
+		41DF133920D17EAA008D56CB /* NewWayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DF133020D17EAA008D56CB /* NewWayViewController.swift */; };
+		41DF133A20D17EAA008D56CB /* OldWayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DF133120D17EAA008D56CB /* OldWayViewController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* TempViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		72A4C02DC04EDCBB5A55AD66 /* Pods_DSDMenu_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B4D1C51EDF0F335EBA04C2 /* Pods_DSDMenu_Example.framework */; };
@@ -45,13 +44,12 @@
 		41DF132D20D17EA9008D56CB /* CustomDropDownCellWithNib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomDropDownCellWithNib.xib; sourceTree = "<group>"; };
 		41DF132E20D17EA9008D56CB /* CustomDropDownCellWithoutNib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDropDownCellWithoutNib.swift; sourceTree = "<group>"; };
 		41DF132F20D17EAA008D56CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		41DF133020D17EAA008D56CB /* NewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
-		41DF133120D17EAA008D56CB /* OldViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldViewController.swift; sourceTree = "<group>"; };
+		41DF133020D17EAA008D56CB /* NewWayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewWayViewController.swift; sourceTree = "<group>"; };
+		41DF133120D17EAA008D56CB /* OldWayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldWayViewController.swift; sourceTree = "<group>"; };
 		47D76D701D48733DA034BF79 /* Pods_DSDMenu_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DSDMenu_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* DSDMenu_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DSDMenu_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* TempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* DSDMenu_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DSDMenu_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -108,9 +106,8 @@
 			isa = PBXGroup;
 			children = (
 				41DF132920D17EA9008D56CB /* AbstractExampleViewController.swift */,
-				41DF133120D17EAA008D56CB /* OldViewController.swift */,
-				41DF133020D17EAA008D56CB /* NewViewController.swift */,
-				607FACD71AFB9204008FA782 /* TempViewController.swift */,
+				41DF133120D17EAA008D56CB /* OldWayViewController.swift */,
+				41DF133020D17EAA008D56CB /* NewWayViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -378,10 +375,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41DF133A20D17EAA008D56CB /* OldViewController.swift in Sources */,
+				41DF133A20D17EAA008D56CB /* OldWayViewController.swift in Sources */,
 				41DF133520D17EAA008D56CB /* Meal.swift in Sources */,
-				607FACD81AFB9204008FA782 /* TempViewController.swift in Sources */,
-				41DF133920D17EAA008D56CB /* NewViewController.swift in Sources */,
+				41DF133920D17EAA008D56CB /* NewWayViewController.swift in Sources */,
 				41DF133720D17EAA008D56CB /* CustomDropDownCellWithoutNib.swift in Sources */,
 				41DF133320D17EAA008D56CB /* AbstractExampleViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,

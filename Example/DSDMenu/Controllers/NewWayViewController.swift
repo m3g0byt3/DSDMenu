@@ -8,12 +8,12 @@
 
 import UIKit
 
-final class NewViewController: AbstractExampleViewController {
+final class NewWayViewController: AbstractExampleViewController {
 
     // MARK: - Properties
 
     override class var defaultTitle: String {
-        return "Select vegetable from menu"
+        return "Select vegetable from the menu"
     }
 
     let meals = [
