@@ -13,8 +13,7 @@
 
 A simple drop-down menu written in Swift.
 
-![Example](Images/example.gif)
-
+![Example]
 
 
 ## Features
@@ -79,7 +78,7 @@ pod install
 	
 	Place a `UIButton` object on the storyboard and change custom class as pictured below:
 	
-	![Interface Builder setup](Images/ib-setup.png)
+	![Interface Builder setup]
 
 ### Customize menu behaviour:
 
@@ -94,8 +93,8 @@ DSDMenu can be customized and controlled using two ways (mutually exclusive!):
 		```
 		
 	2. Using Interface Builder:
-	
-		![Interface Builder delegate](Images/ib-delegate.png)
+		
+		![Interface Builder delegate]
 	
 2. #### Using configuration closure (new-way):
 
@@ -170,5 +169,7 @@ DSDMenu is released under an MIT license. See [LICENSE] for more information.
 [m3g0byt3]: 	<https://github.com/m3g0byt3>
 [See also]: <https://stackoverflow.com/questions/34295577/where-to-add-auto-layout-constraints-code-within-a-custom-uiview>
 [CocoaPods]: <https://cocoapods.org>
-[Carthage]: <https://github.com/Carthage/Carthage>
-[Homebrew]: <http://brew.sh/>
+[Example]: <https://raw.githubusercontent.com/m3g0byt3/DSDMenu/master/Images/example.gif>
+[Interface Builder setup]: <https://raw.githubusercontent.com/m3g0byt3/DSDMenu/master/Images/ib-setup.png>
+[Interface Builder delegate]: <https://raw.githubusercontent.com/m3g0byt3/DSDMenu/master/Images/ib-delegate.png>
+
