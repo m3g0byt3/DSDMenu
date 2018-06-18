@@ -14,7 +14,7 @@ class AbstractExampleViewController: UIViewController {
     // MARK: - Properties
 
     class var defaultTitle: String {
-        preconditionFailure("Must be implemented by subclass!")
+        preconditionFailure("Must be implemented by a subclass!")
     }
 
     // MARK: - IBOutlets
@@ -39,12 +39,12 @@ class AbstractExampleViewController: UIViewController {
     // MARK: - Private API
 
     func setupUI() {
-        navigationItem.title = NewViewController.defaultTitle
+        navigationItem.title = type(of: self).defaultTitle
     }
 
     func resetUI() {
         navigationItem.title = nil
         imageView.image = nil
-        navigationItem.title = NewViewController.defaultTitle
+        navigationItem.title = type(of: self).defaultTitle
     }
 }
