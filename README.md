@@ -2,7 +2,6 @@
 
 [![CI Status](https://img.shields.io/travis/m3g0byt3/DSDMenu.svg?style=flat)](https://travis-ci.org/m3g0byt3/DSDMenu)
 [![Version](https://img.shields.io/cocoapods/v/DSDMenu.svg?style=flat)](https://cocoapods.org/pods/DSDMenu)
-[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/DSDMenu.svg?style=flat)](https://cocoapods.org/pods/DSDMenu)
 [![Platform](https://img.shields.io/cocoapods/p/DSDMenu.svg?style=flat)](https://cocoapods.org/pods/DSDMenu)
 ![iOS](https://img.shields.io/badge/iOS-9.0-green.svg)
@@ -43,7 +42,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 ---
-### CocoaPods
+DSDMenu is available via [CocoaPods].
 
 [CocoaPods] is a dependency manager for Swift and Objective-C Cocoa projects. You can install it with the following command:
 
@@ -62,24 +61,6 @@ Then, run the following command:
 ```bash
 pod install
 ```
-
-### Carthage
-
-[Carthage] is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
-
-You can install Carthage with [Homebrew] using the following command:
-
-```bash
-$ brew update
-$ brew install carthage
-```
-To integrate DSDMenu into your Xcode project using Carthage, specify it in your `Cartfile`:
-
-```ogdl
-github "m3g0byt3/DSDMenu"
-```
-
-Run `carthage update` to build the framework and drag the built `DSDMenu.framework` into your Xcode project.
 
 
 
