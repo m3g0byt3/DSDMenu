@@ -8,7 +8,10 @@
 
 import UIKit
 
-/// Helper struct, used to register `UINib` instance (if available) from given class or this class itself.
+/**
+ Helper struct, wraps `UINib` instance (if available) from the given cell class or this cell class itself,
+ if unable to instantiate `UINib`.
+ */
 struct CellClassWrapper {
 
     private static let nibType = "nib"
@@ -29,8 +32,7 @@ struct CellClassWrapper {
 extension UITableView {
 
     /**
-     Register `UINib` instance (if available) provided by the class,
-     wrapped in the `CellClassWrapper` instance or this class itself.
+     Register `CellClassWrapper` instance.
      - parameters:
         - wrapper: a `CellClassWrapper` instance
         - identifier: `UITableView` reuse identifier
