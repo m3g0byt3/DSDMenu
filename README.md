@@ -96,7 +96,7 @@ DSDMenu is released under an MIT license. See [LICENSE] for more information.
 
 
 [//]: #
-[LICENSE]: 	<https://github.com/m3g0byt3/dsdmenu/blob/master/LICENSE.txt>
+[LICENSE]: 	<https://github.com/m3g0byt3/dsdmenu/blob/master/LICENSE>
 [m3g0byt3]: 	<https://github.com/m3g0byt3>
 [See also]: <https://stackoverflow.com/questions/34295577/where-to-add-auto-layout-constraints-code-within-a-custom-uiview>
 [CocoaPods]: <https://cocoapods.org>

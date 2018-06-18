@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		411083B020D1844D0057A9D6 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 411083AF20D1844C0057A9D6 /* LICENSE.txt */; };
+		418FB43420D7C9A90027E833 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 418FB43320D7C9A90027E833 /* LICENSE */; };
 		41DF133220D17EAA008D56CB /* CustomDropDownCellWithNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DF132820D17EA9008D56CB /* CustomDropDownCellWithNib.swift */; };
 		41DF133320D17EAA008D56CB /* AbstractExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DF132920D17EA9008D56CB /* AbstractExampleViewController.swift */; };
 		41DF133420D17EAA008D56CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41DF132A20D17EA9008D56CB /* LaunchScreen.storyboard */; };
@@ -36,7 +36,7 @@
 
 /* Begin PBXFileReference section */
 		05404BAA8173D129C6CCA62B /* Pods-DSDMenu_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DSDMenu_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-DSDMenu_Example/Pods-DSDMenu_Example.release.xcconfig"; sourceTree = "<group>"; };
-		411083AF20D1844C0057A9D6 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE.txt; path = ../LICENSE.txt; sourceTree = "<group>"; };
+		418FB43320D7C9A90027E833 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		41DF132820D17EA9008D56CB /* CustomDropDownCellWithNib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDropDownCellWithNib.swift; sourceTree = "<group>"; };
 		41DF132920D17EA9008D56CB /* AbstractExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractExampleViewController.swift; sourceTree = "<group>"; };
 		41DF132B20D17EA9008D56CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -195,7 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				BAF5968231DED37789B8F74A /* README.md */,
-				411083AF20D1844C0057A9D6 /* LICENSE.txt */,
+				418FB43320D7C9A90027E833 /* LICENSE */,
 				9F079A3CC74C19BF46F23282 /* DSDMenu.podspec */,
 			);
 			name = "Podspec Metadata";
@@ -299,8 +299,8 @@
 				41DF133620D17EAA008D56CB /* CustomDropDownCellWithNib.xib in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				41DF133820D17EAA008D56CB /* Assets.xcassets in Resources */,
-				411083B020D1844D0057A9D6 /* LICENSE.txt in Resources */,
 				41DF133420D17EAA008D56CB /* LaunchScreen.storyboard in Resources */,
+				418FB43420D7C9A90027E833 /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

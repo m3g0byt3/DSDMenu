@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
                    DESC
   s.homepage                = 'https://github.com/m3g0byt3/DSDMenu'
   s.screenshot              = 'https://raw.githubusercontent.com/m3g0byt3/DSDMenu/master/example.gif'
-  s.license                 = { :type => 'MIT', :file => 'LICENSE.txt' }
+  s.license                 = { :type => 'MIT', :file => 'LICENSE' }
   s.author                  = { 'm3g0byt3' => 'm3g0byt3@gmail.com' }
   s.source                  = { :git => 'https://github.com/m3g0byt3/DSDMenu.git', :tag => s.version.to_s }
   s.platform                = :ios
