@@ -9,12 +9,12 @@
 import UIKit
 import DSDMenu
 
-final class OldViewController: AbstractExampleViewController {
+final class OldWayViewController: AbstractExampleViewController {
 
     // MARK: - Properties
 
     override class var defaultTitle: String {
-        return "Select fruit from menu"
+        return "Select fruit from the menu"
     }
 
     let meals = [
@@ -36,7 +36,7 @@ final class OldViewController: AbstractExampleViewController {
 
 // MARK: - DropDownDelegate protocol conformance
 
-extension OldViewController: DropDownDelegate {
+extension OldWayViewController: DropDownDelegate {
 
     func numberOfItems(in dropDownMenu: DropDownMenu) -> Int {
         return meals.count
