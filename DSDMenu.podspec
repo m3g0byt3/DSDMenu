@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                    = 'DSDMenu'
-  s.version                 = '0.2.2'
+  s.version                 = '0.2.3'
   s.summary                 = 'A dead-simpe, UIkit-based dropdown menu, written in Swift'
   s.description = <<-DESC
                      This pod allows you to use subclass of the UIButton UIKit class, DropDownMenu, to create beautiful and customizable drop-down menus.
