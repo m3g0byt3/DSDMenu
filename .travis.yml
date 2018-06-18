@@ -4,9 +4,9 @@ podfile: Example/Podfile
 
 env:
     global:
-        - WORKSPACE="Example/${POD_NAME}.xcworkspace"
-        - SCHEME="${POD_NAME}-Example"
-        - SDK=iphonesimulator11.0
+        - WORKSPACE="Example/DSDMenu.xcworkspace"
+        - SCHEME="DSDMenu-Example"
+        - SDK="iphonesimulator11.0"
     matrix:
         - DESTINATION="OS=9.0,name=iPhone 6s"
         - DESTINATION="OS=10.0,name=iPhone 7"
@@ -14,5 +14,5 @@ env:
 
 script:
     - set -o pipefail
-    - xcodebuild test -enableCodeCoverage YES -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" ONLY_ACTIVE_ARCH=NO | xcpretty
+    - xcodebuild clean test -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" ONLY_ACTIVE_ARCH=NO | xcpretty -c --test --color
     - pod lib lint
