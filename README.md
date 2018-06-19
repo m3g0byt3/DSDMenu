@@ -4,7 +4,7 @@
 [![Version](https://img.shields.io/cocoapods/v/DSDMenu.svg?style=flat)](https://cocoapods.org/pods/DSDMenu)
 [![License](https://img.shields.io/cocoapods/l/DSDMenu.svg?style=flat)](https://cocoapods.org/pods/DSDMenu)
 [![Platform](https://img.shields.io/cocoapods/p/DSDMenu.svg?style=flat)](https://cocoapods.org/pods/DSDMenu)
-![iOS](https://img.shields.io/badge/iOS-9.0-green.svg)
+[![iOS](https://img.shields.io/badge/iOS-9.0-blue.svg?style=flat)](https://cocoapods.org/pods/DSDMenu)
 [![GitHub issues](https://img.shields.io/github/issues/m3g0byt3/DSDMenu.svg?style=flat)](https://github.com/m3g0byt3/DSDMenu)
 
 
@@ -115,13 +115,13 @@ DSDMenu can be customized and controlled using two ways (mutually exclusive!):
 ## API reference:
 ---
 
-| Delegate method                        | Configuration method equivalent | Description                                                                                 |
-|----------------------------------------|--------------------------------|---------------------------------------------------------------------------------------------|
-| numberOfItems(in:)                     | numberOfItems(\_:)             | Asks the delegate for the number of items in menu                                           |
-| cellClass(for:)                        | cellClass(\_:)                 | Asks the delegate for the cell class used in menu                                           |
-| dropDownMenu(\_:didSelectItemAt:)      | didSelectItem(\_:)             | Tells the delegate that the item in the menu was tapped                                     |
-| dropDownMenu(\_:willDisplay:forRowAt:) | willDisplayCell(\_:)           | Tells the delegate that the cell in the menu is about to be displayed                       |
-| updateThumbnailOnSelection(in:)        | updateThumbnailOnSelection(_:) | Asks the delegate whether the menu should update thumbnail image automatically on selection |
+| Delegate method                         | Configuration method equivalent  | Description                                                                                 |
+|-----------------------------------------|----------------------------------|---------------------------------------------------------------------------------------------|
+| `numberOfItems(in:)`                    | `numberOfItems(_:)`              | Asks the delegate for the number of items in menu                                           |
+| `cellClass(for:)`                       | `cellClass(_:)`                  | Asks the delegate for the cell class used in menu                                           |
+| `dropDownMenu(_:didSelectItemAt:)`      | `didSelectItem(_:)`              | Tells the delegate that the item in the menu was tapped                                     |
+| `dropDownMenu(_:willDisplay:forRowAt:)` | `willDisplayCell(_:)`            | Tells the delegate that the cell in the menu is about to be displayed                       |
+| `updateThumbnailOnSelection(in:)`       | `updateThumbnailOnSelection(_:)` | Asks the delegate whether the menu should update thumbnail image automatically on selection |
 
 
 
@@ -135,6 +135,8 @@ DSDMenu can be customized and controlled using two ways (mutually exclusive!):
 - [ ] Correct handling of orientation changes when `updateThumbnailOnSelection = true`
 - [ ] Use POP for cells instead subclassing (if possible?)
 - [ ] Allow to customize menu's appearance (shadows, colors, etc)
+- [ ] Unit and UI tests
+- [ ] Rx extension
 
 
 
