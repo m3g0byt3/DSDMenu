@@ -5,14 +5,14 @@ podfile: Example/Podfile
 env:
     global:
         - WORKSPACE="Example/DSDMenu.xcworkspace"
-        - SCHEME="DSDMenu-Example"
-        - SDK="iphonesimulator11.0"
+        - SCHEME="DSDMenu_Example"
+        - SDK="iphonesimulator11.4"
     matrix:
-        - DESTINATION="OS=9.0,name=iPhone 6s"
-        - DESTINATION="OS=10.0,name=iPhone 7"
-        - DESTINATION="OS=11.0,name=iPhone 7"
+        - DESTINATION="OS=9.3,name=iPhone 6s"
+        - DESTINATION="OS=10.3.1,name=iPhone 7"
+        - DESTINATION="OS=11.4,name=iPhone 8"
 
 script:
     - set -o pipefail
-    - xcodebuild clean test -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" ONLY_ACTIVE_ARCH=NO | xcpretty -c --test --color
+    - xcodebuild clean build -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" ONLY_ACTIVE_ARCH=NO | xcpretty --test --color
     - pod lib lint
